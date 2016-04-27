@@ -55,47 +55,12 @@ public class SynchronousNotificationListener implements NotificationListener {
 	}
 
 	@Override
-	public void onResponse(Request req, Response resp) {
+	public void onNotification(Request req, Response resp) {
 		if (request == null || Arrays.equals(request.getToken(), req.getToken())) {
 			synchronized (lock) {
 				currentResponse = resp;
 				lock.notifyAll();
 			}
 		}
-	}
-
-	@Override
-	public void onReject(Request req) {
-		if (request == null || Arrays.equals(request.getToken(), req.getToken())) {
-			synchronized (lock) {
-				lock.notifyAll();
-			}
-		}
-	}
-
-	@Override
-	public void onTimeout(Request req) {
-		if (request == null || Arrays.equals(request.getToken(), req.getToken())) {
-			synchronized (lock) {
-				lock.notifyAll();
-			}
-		}
-	}
-
-	@Override
-	public void onCancel(Request req) {
-		if (request == null || Arrays.equals(request.getToken(), req.getToken())) {
-			synchronized (lock) {
-				lock.notifyAll();
-			}
-		}
-	}
-
-	@Override
-	public void onAcknowledgement(Request request) {
-	}
-
-	@Override
-	public void onRetransmission(Request request) {
 	}
 }

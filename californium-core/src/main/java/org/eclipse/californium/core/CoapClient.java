@@ -955,44 +955,9 @@ public class CoapClient {
 		}
 
 		@Override
-		public void onRetransmission(Request request) {
-			if (Arrays.equals(request.getToken(), req.getToken())) {
-				obs.onRetransmission();
-			}
-		}
-
-		@Override
-		public void onResponse(Request request, Response response) {
+		public void onNotification(Request request, Response response) {
 			if (Arrays.equals(request.getToken(), req.getToken())) {
 				obs.onResponse(response);
-			}
-		}
-
-		@Override
-		public void onAcknowledgement(Request request) {
-			if (Arrays.equals(request.getToken(), req.getToken())) {
-				obs.onAcknowledgement();
-			}
-		}
-
-		@Override
-		public void onReject(Request request) {
-			if (Arrays.equals(request.getToken(), req.getToken())) {
-				obs.onReject();
-			}
-		}
-
-		@Override
-		public void onTimeout(Request request) {
-			if (Arrays.equals(request.getToken(), req.getToken())) {
-				obs.onTimeout();
-			}
-		}
-
-		@Override
-		public void onCancel(Request request) {
-			if (Arrays.equals(request.getToken(), req.getToken())) {
-				obs.onCancel();
 			}
 		}
 	}

@@ -16,39 +16,28 @@ package org.eclipse.californium.core.observe;
 import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
 
+/**
+ * Client code can register a notification listener on an {@code Endpoint} in
+ * order to be called back when notifications for observed resources are
+ * received from peers.
+ * <p>
+ * Notification listeners are registered at a <em>global</em> level only, i.e.
+ * the listener will be invoked for all notifications for all observed
+ * resources. This is in contrast to the {@code CoapHandler} that client code
+ * can register when invoking one of {@code CoapClient}'s methods and which is
+ * called back for notifications for a particular observed resource only.
+ * </p>
+ */
 public interface NotificationListener {
 
-		public void onRetransmission(Request request);
-		
-		/**
-		 * Invoked when a response arrives.
-		 * 
-		 * @param response the response that arrives
-		 */
-		public void onResponse(Request request, Response response);
-
-		/**
-		 * Invoked when the message has been acknowledged by the remote endpoint.
-		 */
-		public void onAcknowledgement(Request request);
-
-		/**
-		 * Invoked when the message has been rejected by the remote endpoint.
-		 */
-		public void onReject(Request request);
-
-		/**
-		 * Invoked when the client stops retransmitting the message and still has
-		 * not received anything from the remote endpoint. By default this is the
-		 * case after 5 unsuccessful transmission attempts.
-		 */
-		public void onTimeout(Request request);
-
-		/**
-		 * Invoked when the message has been canceled. For instance, a user might
-		 * cancel a request or a CoAP resource that is being observer might cancel a
-		 * response to send another one instead.
-		 */
-		public void onCancel(Request request);
-
+	/**
+	 * Invoked when a notification for an observed resource has been received.
+	 * 
+	 * @param Request
+	 *            The original request that was used to establish the
+	 *            observation.
+	 * @param response
+	 *            the notification.
+	 */
+	void onNotification(Request request, Response response);
 }

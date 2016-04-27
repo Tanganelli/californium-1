@@ -38,7 +38,6 @@ import java.util.logging.Logger;
 import org.eclipse.californium.core.coap.CoAP.Type;
 import org.eclipse.californium.core.coap.EmptyMessage;
 import org.eclipse.californium.core.coap.Message;
-import org.eclipse.californium.core.coap.MessageObserver;
 import org.eclipse.californium.core.coap.MessageObserverAdapter;
 import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
@@ -396,38 +395,26 @@ public class Matcher {
 				exchange = new Exchange(request, Origin.LOCAL, obs.getContext());
 				exchange.setRequest(request);
 				exchange.setObserver(exchangeObserver);
-				request.addMessageObserver(new MessageObserver() {
+				request.addMessageObserver(new MessageObserverAdapter() {
+
 					@Override
 					public void onTimeout() {
-						notificationListener.onTimeout(request);
 						observationStore.remove(request.getToken());
 					}
 
 					@Override
-					public void onRetransmission() {
-						notificationListener.onRetransmission(request);
-					}
-
-					@Override
 					public void onResponse(Response response) {
-						notificationListener.onResponse(request, response);
+						notificationListener.onNotification(request, response);
 					}
 
 					@Override
 					public void onReject() {
-						notificationListener.onReject(request);
 						observationStore.remove(request.getToken());
 					}
 
 					@Override
 					public void onCancel() {
-						notificationListener.onCancel(request);
 						observationStore.remove(request.getToken());
-					}
-
-					@Override
-					public void onAcknowledgement() {
-						notificationListener.onAcknowledgement(request);
 					}
 				});
 			}
@@ -637,11 +624,6 @@ public class Matcher {
 				cachedRequest.cancel();
 			}
 		}
-		Observation observation = observationStore.get(token);
-		if (observation != null) {
-			observationStore.remove(token);
-			notificationListener.onCancel(observation.getRequest());
-		}
+		observationStore.remove(token);
 	}
-
 }

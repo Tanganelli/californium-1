@@ -504,49 +504,12 @@ public class CoapEndpoint implements Endpoint {
 	}
 
 	private class NotificationDispatcher implements NotificationListener {
-
 		@Override
-		public void onRetransmission(Request request) {
+		public void onNotification(Request request, Response response) {
 			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onRetransmission(request);
+				notificationListener.onNotification(request, response);
 			}
 		}
-
-		@Override
-		public void onResponse(Request request, Response response) {
-			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onResponse(request, response);
-			}
-		}
-
-		@Override
-		public void onAcknowledgement(Request request) {
-			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onAcknowledgement(request);
-			}
-		}
-
-		@Override
-		public void onReject(Request request) {
-			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onReject(request);
-			}
-		}
-
-		@Override
-		public void onTimeout(Request request) {
-			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onTimeout(request);
-			}
-		}
-
-		@Override
-		public void onCancel(Request request) {
-			for (NotificationListener notificationListener : new ArrayList<>(notificationListeners)) {
-				notificationListener.onCancel(request);
-			}
-		}
-
 	}
 
 	/**
@@ -796,6 +759,7 @@ public class CoapEndpoint implements Endpoint {
 
 	}
 
+	@Override
 	public void cancelObservation(byte[] token) {
 		matcher.cancelObserve(token);
 	}
