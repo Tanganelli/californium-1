@@ -49,7 +49,7 @@ import org.eclipse.californium.scandium.util.DatagramWriter;
  * Record</a> layer containing the data to be exchanged with peers.
  * <p>
  * This class is used to transform these data structures from their binary encoding
- * as received from the network interface to their object representation and vice versa.
+ * as received from the network interfacedraft to their object representation and vice versa.
  */
 public class Record {
 

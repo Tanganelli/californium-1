@@ -30,7 +30,7 @@ import org.eclipse.californium.core.coap.LinkFormat;
 
 /**
  * ResourceAttributes wraps different attributes that the CoAP protocol defines
- * such as title, resource type or interface description. These attributes will
+ * such as title, resource type or interfacedraft description. These attributes will
  * also be included in the link description of the resource they belong to. For
  * example, if a title was specified, the link description for a sensor resource
  * might look like this <code>&lt;/sensors&gt;;title="Sensor Index"</code>.
@@ -104,7 +104,7 @@ public class ResourceAttributes {
 	}
 	
 	/**
-	 * Adds an interface description.
+	 * Adds an interfacedraft description.
 	 *
 	 * @param description the description
 	 */
@@ -113,9 +113,9 @@ public class ResourceAttributes {
 	}
 	
 	/**
-	 * Gets all interface descriptions.
+	 * Gets all interfacedraft descriptions.
 	 *
-	 * @return the interface descriptions
+	 * @return the interfacedraft descriptions
 	 */
 	public List<String> getInterfaceDescriptions() {
 		return getAttributeValues(LinkFormat.INTERFACE_DESCRIPTION);

@@ -46,7 +46,7 @@ import org.eclipse.californium.core.server.resources.Resource;
  * An execution environment for CoAP {@link Resource}s.
  * 
  * A server hosts a tree of {@link Resource}s which are exposed to clients by
- * means of one or more {@link Endpoint}s which are bound to a network interface.
+ * means of one or more {@link Endpoint}s which are bound to a network interfacedraft.
  * 
  * A server can be started and stopped. When the server stops the endpoint
  * frees the port it is listening on, but keeps the executors running to resume.

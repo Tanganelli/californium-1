@@ -107,7 +107,7 @@ public class ServerHandshakerTest {
 
 	@Test
 	public void testConstructorAdjustsMaxFragmentSize() throws HandshakeException {
-		// given a network interface with standard ethernet MTU (1500 bytes)
+		// given a network interfacedraft with standard ethernet MTU (1500 bytes)
 		int networkMtu = ETHERNET_MTU;
 
 		// when instantiating a ServerHandshaker to negotiate a new session
@@ -120,7 +120,7 @@ public class ServerHandshakerTest {
 
 	@Test
 	public void testReceiveClientHelloProcessesMaxFragmentLengthExtension() throws Exception {
-		// given a server bound to a network interface on an ethernet (MTU 1500 bytes)
+		// given a server bound to a network interfacedraft on an ethernet (MTU 1500 bytes)
 		// and a constrained client that can only handle fragments of max 512 bytes
 		List<byte[]> extensions = new LinkedList<>();
 		extensions.add(DtlsTestTools.newMaxFragmentLengthExtension(1)); // code 1 = 512 bytes

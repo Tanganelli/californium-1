@@ -106,7 +106,7 @@ public class EndpointManager {
 	 * Creates an endpoint with the wildcard adress (::0) and an ephemeral port.
 	 * The new endpoint gets a client message deliverer and is started.
 	 * To listen on specific interfaces or ports, set the default endpoint manually.
-	 * To distinguish different interfaces, one endpoint per interface must be added.
+	 * To distinguish different interfaces, one endpoint per interfacedraft must be added.
 	 */
 	private synchronized void createDefaultEndpoint() {
 		if (default_endpoint != null) return;
@@ -206,7 +206,7 @@ public class EndpointManager {
 				}
 			}
 		} catch (SocketException e) {
-			LOGGER.log(Level.SEVERE, "Could not fetch all interface addresses", e);
+			LOGGER.log(Level.SEVERE, "Could not fetch all interfacedraft addresses", e);
 		}
 		return interfaces;
 	}
@@ -224,7 +224,7 @@ public class EndpointManager {
 	}
 	
 	/**
-	 * ClientMessageDeliverer is a simple implementation of the interface
+	 * ClientMessageDeliverer is a simple implementation of the interfacedraft
 	 * {@link MessageDeliverer}. When a response arrives it adds it to the
 	 * corresponding request. If requests arrive, however, the
 	 * ClientMessageDeliverer rejects them.

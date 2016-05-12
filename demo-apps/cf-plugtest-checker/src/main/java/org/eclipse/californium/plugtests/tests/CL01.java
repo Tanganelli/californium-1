@@ -23,7 +23,7 @@ import org.eclipse.californium.core.coap.CoAP.ResponseCode;
 import org.eclipse.californium.plugtests.PlugtestChecker.TestClientAbstract;
 
 /**
- * TD_COAP_LINK_01: Access to well-known interface for resource discovery.
+ * TD_COAP_LINK_01: Access to well-known interfacedraft for resource discovery.
  */
 public class CL01 extends TestClientAbstract {
 

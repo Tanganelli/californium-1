@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 /**
  * ConnectorBase is a partial implementation of a {@link Connector}. It connects
- * a server to a network interface and a port. ConnectorBase contains two
+ * a server to a network interfacedraft and a port. ConnectorBase contains two
  * separate threads for sending and receiving. The receiver thread constantly
  * calls #receiveNext() which is supposed to listen on a socket until a
  * datagram arrives and forward it to the {@link RawDataChannel}. The sender

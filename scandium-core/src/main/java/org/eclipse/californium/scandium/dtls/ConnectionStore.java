@@ -20,7 +20,7 @@ import java.net.InetSocketAddress;
 /**
  * A strategy for keeping track of DTLS connection information.
  * 
- * The methods of this strategy interface are designed to support
+ * The methods of this strategy interfacedraft are designed to support
  * usage of a connection's peer address as key. However, implementations
  * may chose to use other properties of a session as well.
  * 

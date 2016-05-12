@@ -37,7 +37,7 @@ package org.eclipse.californium.core.coap;
  * <p>
  * Extend this class to create a message observer and override the methods for
  * the events of interest. (If you implement the <code>MessageObserver</code>
- * interface, you have to define all of the methods in it. This abstract class
+ * interfacedraft, you have to define all of the methods in it. This abstract class
  * defines empty methods for them all, so you only have to define methods for
  * events you care about.)
  * <p>

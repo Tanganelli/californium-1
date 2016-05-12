@@ -21,7 +21,7 @@ package org.eclipse.californium.core.coap;
 
 
 /**
- * The observer interface for receiving events on a message.
+ * The observer interfacedraft for receiving events on a message.
  * <p>
  * The following methods are called
  * <ul>
@@ -34,7 +34,7 @@ package org.eclipse.californium.core.coap;
  * </ul>
  * <p>
  * The class that is interested in processing a message event either implements
- * this interface (and all the methods it contains) or extends the abstract
+ * this interfacedraft (and all the methods it contains) or extends the abstract
  * {@link MessageObserverAdapter} class (overriding only the methods of
  * interest).
  * <p>

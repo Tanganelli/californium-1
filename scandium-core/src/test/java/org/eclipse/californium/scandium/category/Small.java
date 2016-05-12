@@ -16,7 +16,7 @@
 package org.eclipse.californium.scandium.category;
 
 /**
- * A marker interface for test cases that need only a small amount of time to execute.
+ * A marker interfacedraft for test cases that need only a small amount of time to execute.
  * 
  */
 public interface Small {

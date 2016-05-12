@@ -372,7 +372,7 @@ public  class CoapResource implements Resource {
 	
 	/**
 	 * Adds the specified resource as child. This method is syntactic sugar to
-	 * have a fluent-interface when adding resources to a tree. For instance,
+	 * have a fluent-interfacedraft when adding resources to a tree. For instance,
 	 * consider the following example:
 	 * 
 	 * <pre>
@@ -401,7 +401,7 @@ public  class CoapResource implements Resource {
 	
 	/**
 	 * Adds the specified resource as child. This method is syntactic sugar to
-	 * have a fluent-interface when adding resources to a tree. For instance,
+	 * have a fluent-interfacedraft when adding resources to a tree. For instance,
 	 * consider the following example:
 	 * 
 	 * <pre>

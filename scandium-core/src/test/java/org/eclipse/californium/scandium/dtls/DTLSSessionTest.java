@@ -51,7 +51,7 @@ public class DTLSSessionTest {
 
 	@Test
 	public void testMaxFragmentLengthIsAdjustedToMtu() {
-		// given an ethernet network interface
+		// given an ethernet network interfacedraft
 		int mtu = 1500;
 
 		// when setting the session's maximumTransmissionUnit property

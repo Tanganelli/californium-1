@@ -16,7 +16,7 @@
 package org.eclipse.californium.scandium.category;
 
 /**
- * A marker interface for test cases that need a medium amount of time to execute.
+ * A marker interfacedraft for test cases that need a medium amount of time to execute.
  * 
  * Typical tests include component test, e.g. testing of individual REST API resources.
  */

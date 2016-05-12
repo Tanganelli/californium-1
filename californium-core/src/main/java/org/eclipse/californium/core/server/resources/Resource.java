@@ -78,7 +78,7 @@ import org.eclipse.californium.core.server.ServerMessageDeliverer;
  * be executed on the executor of the parent or transitively the first ancestor
  * that defines its own executor. If no resource up to the root defines its own
  * executor, the currently executing thread will handle the request. A class
- * that implements this interface can export further methods to allow the
+ * that implements this interfacedraft can export further methods to allow the
  * execution of code on the resource's executor. See {@link CoapResource} for an
  * example.
  * </p>

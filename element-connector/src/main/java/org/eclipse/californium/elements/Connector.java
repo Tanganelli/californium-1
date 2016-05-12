@@ -20,10 +20,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 /**
- * A managed interface for exchanging messages between networked clients and a
+ * A managed interfacedraft for exchanging messages between networked clients and a
  * server application.
  * 
- * An implementation usually binds to a socket on a local network interface in order
+ * An implementation usually binds to a socket on a local network interfacedraft in order
  * to communicate with clients. After the {@link #start()} method has been invoked,
  * applications can use the {@link #send(RawData)} method to send messages
  * (wrapped in a {@link RawData} object) to a client via the network. Processing of

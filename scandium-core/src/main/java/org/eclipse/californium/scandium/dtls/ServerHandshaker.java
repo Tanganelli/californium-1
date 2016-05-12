@@ -140,7 +140,7 @@ public class ServerHandshaker extends Handshaker {
 	 * @param config
 	 *            the DTLS configuration.
 	 * @param maxTransmissionUnit
-	 *            the MTU value reported by the network interface the record layer is bound to.
+	 *            the MTU value reported by the network interfacedraft the record layer is bound to.
 	 * @throws HandshakeException if the handshaker cannot be initialized
 	 * @throws NullPointerException
 	 *            if session or recordLayer is <code>null</code>.
@@ -168,7 +168,7 @@ public class ServerHandshaker extends Handshaker {
 	 * @param config
 	 *            the DTLS configuration.
 	 * @param maxTransmissionUnit
-	 *            the MTU value reported by the network interface the record layer is bound to.
+	 *            the MTU value reported by the network interfacedraft the record layer is bound to.
 	 * @throws IllegalStateException
 	 *            if the message digest required for computing the FINISHED message hash cannot be instantiated.
 	 * @throws IllegalArgumentException

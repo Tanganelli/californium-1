@@ -114,7 +114,7 @@ public class Matcher {
 			started = true;
 			deduplicator.start();
 	
-			// this is a useful health metric that could later be exported to some kind of monitoring interface
+			// this is a useful health metric that could later be exported to some kind of monitoring interfacedraft
 			if (LOGGER.isLoggable(healthStatusLevel)) {
 				executor.scheduleAtFixedRate(new Runnable() {
 					@Override

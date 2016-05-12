@@ -16,7 +16,7 @@
 package org.eclipse.californium.scandium.category;
 
 /**
- * A marker interface for test cases that need a large amount of time to execute.
+ * A marker interfacedraft for test cases that need a large amount of time to execute.
  * 
  * Typical tests falling in this category include end-to-end functional tests and
  * tests involving conversational state. 

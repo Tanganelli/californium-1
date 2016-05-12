@@ -328,7 +328,7 @@ public class DTLSConnector implements Connector {
 		if (ni != null && ni.getMTU() > 0) {
 			this.maximumTransmissionUnit = ni.getMTU();
 		} else {
-			LOGGER.config("Cannot determine MTU of network interface, using minimum MTU [1280] of IPv6 instead");
+			LOGGER.config("Cannot determine MTU of network interfacedraft, using minimum MTU [1280] of IPv6 instead");
 			this.maximumTransmissionUnit = 1280;
 		}
 
@@ -1399,15 +1399,15 @@ public class DTLSConnector implements Connector {
 	}
 
 	/**
-	 * Gets the MTU value of the network interface this connector is bound to.
+	 * Gets the MTU value of the network interfacedraft this connector is bound to.
 	 * <p>
 	 * Applications may use this property to determine the maximum length of application
 	 * layer data that can be sent using this connector without requiring IP fragmentation.
 	 * <p> 
-	 * The value returned will be 0 if this connector is not running or the network interface
+	 * The value returned will be 0 if this connector is not running or the network interfacedraft
 	 * this connector is bound to does not provide an MTU value.
 	 * 
-	 * @return the MTU provided by the network interface
+	 * @return the MTU provided by the network interfacedraft
 	 */
 	public final int getMaximumTransmissionUnit() {
 		return maximumTransmissionUnit;
@@ -1430,7 +1430,7 @@ public class DTLSConnector implements Connector {
 	 * determined as follows:
 	 * </p>
 	 * <pre>
-	 *   maxFragmentLength = network interface's <em>Maximum Transmission Unit</em>
+	 *   maxFragmentLength = network interfacedraft's <em>Maximum Transmission Unit</em>
 	 *                     - IP header length (20 bytes)
 	 *                     - UDP header length (8 bytes)
 	 *                     - DTLS record header length (13 bytes)

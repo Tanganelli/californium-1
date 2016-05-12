@@ -100,7 +100,7 @@ public class ProxyHttpServer {
 			public void sendResponse(Response response) {
 				// Redirect the response to the HttpStack instead of a normal
 				// CoAP endpoint.
-				// TODO: When we change endpoint to be an interface, we can
+				// TODO: When we change endpoint to be an interfacedraft, we can
 				// redirect the responses a little more elegantly.
 				try {
 					request.setResponse(response);

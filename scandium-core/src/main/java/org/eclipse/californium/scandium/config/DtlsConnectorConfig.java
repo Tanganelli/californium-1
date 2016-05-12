@@ -327,7 +327,7 @@ public class DtlsConnectorConfig {
 		 * The value of this property is used to indicate to peers the <em>Maximum Fragment Length</em>
 		 * as defined in <a href="http://tools.ietf.org/html/rfc6066#section-4">RFC 6066, Section 4</a>.
 		 * It is also used to determine the amount of memory that will be allocated for receiving UDP datagrams
-		 * sent by peers from the network interface.
+		 * sent by peers from the network interfacedraft.
 		 * </p>
 		 * The code must be either <code>null</code> or one of the following:
 		 * <ul>
@@ -338,13 +338,13 @@ public class DtlsConnectorConfig {
 		 * </ul>
 		 * <p>
 		 * If this property is set to <code>null</code>, the <code>DTLSConnector</code> will
-		 * derive its value from the network interface's <em>Maximum Transmission Unit</em>.
+		 * derive its value from the network interfacedraft's <em>Maximum Transmission Unit</em>.
 		 * This means that it will set it to a value small enough to make sure that inbound
 		 * messages fit into a UDP datagram having a size less or equal to the MTU.
 		 * </p>
 		 * 
 		 * @param lengthCode the code indicating the maximum length or <code>null</code> to determine
-		 *                   the maximum fragment length based on the network interface's MTU
+		 *                   the maximum fragment length based on the network interfacedraft's MTU
 		 * @return this builder for command chaining
 		 * @throws IllegalArgumentException if the code is not one of {1, 2, 3, 4} 
 		 */

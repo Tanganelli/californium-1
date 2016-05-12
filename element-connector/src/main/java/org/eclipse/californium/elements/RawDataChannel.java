@@ -20,7 +20,7 @@ package org.eclipse.californium.elements;
 /**
  * A processor for messages received from the network layer.
  * 
- * Applications should register an implementation of this interface with
+ * Applications should register an implementation of this interfacedraft with
  * a <code>Connector</code> via its {@link Connector#setRawDataReceiver(RawDataChannel)}
  * method in order to get notified about incoming messages.
  * 

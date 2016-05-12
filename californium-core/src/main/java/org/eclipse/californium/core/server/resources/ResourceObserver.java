@@ -22,7 +22,7 @@ package org.eclipse.californium.core.server.resources;
 import org.eclipse.californium.core.observe.ObserveRelation;
 
 /**
- * This interface implements Java's observe design pattern for a resource.
+ * This interfacedraft implements Java's observe design pattern for a resource.
  * Notice that it has nothing to do with CoAP's observe relations. A
  * ResourceObserver can be added to a {@link Resource} which should invoke the
  * specified methods if a corresponding event occurs.

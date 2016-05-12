@@ -70,7 +70,7 @@ public class ResumingClientHandshaker extends ClientHandshaker {
 	 * @param config
 	 *            the DTLS configuration parameters to use for the handshake.
 	 * @param maxTransmissionUnit
-	 *            the MTU value reported by the network interface the record layer is bound to.
+	 *            the MTU value reported by the network interfacedraft the record layer is bound to.
 	 * @throws IllegalArgumentException
 	 *            if the given session does not contain an identifier.
 	 * @throws IllegalStateException
