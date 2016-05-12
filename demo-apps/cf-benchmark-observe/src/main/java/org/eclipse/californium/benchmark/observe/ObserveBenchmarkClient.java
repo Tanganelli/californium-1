@@ -133,7 +133,7 @@ public class ObserveBenchmarkClient {
 			.setString(NetworkConfig.Keys.DEDUPLICATOR, NetworkConfig.Keys.NO_DEDUPLICATOR)
 			.setInt(NetworkConfig.Keys.EXCHANGE_LIFETIME, 1500)
 			
-			// Increase buffer for network interface to 10 MB
+			// Increase buffer for network interfacedraft to 10 MB
 			.setInt(NetworkConfig.Keys.UDP_CONNECTOR_RECEIVE_BUFFER, 10*1024*1024)
 			.setInt(NetworkConfig.Keys.UDP_CONNECTOR_SEND_BUFFER, 10*1024*1024)
 		

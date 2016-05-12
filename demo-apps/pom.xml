@@ -45,6 +45,7 @@
 		<module>cf-proxy</module>
 		<module>cf-benchmark</module>
 		<module>cf-benchmark-observe</module>
+		<module>cf-reverseproxy</module>
 	</modules>
 
 	<build>
