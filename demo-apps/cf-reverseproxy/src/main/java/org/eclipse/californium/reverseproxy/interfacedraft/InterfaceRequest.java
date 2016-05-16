@@ -23,6 +23,7 @@ public class InterfaceRequest{
     public InterfaceRequest() {
         lastTimestampNotificationSent = -1;
     }
+
     public CoapExchange getExchange() {
         return exchange;
     }

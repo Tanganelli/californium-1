@@ -44,32 +44,18 @@ public class ReverseProxyResource extends CoapResource {
 
 
 
-    private static final long PERIOD_RTT = 10000; // 10 sec
-
-    private static final long THRESHOLD = 500; // 500 ms as threshold
-
     private final URI uri;
 
     //private final Map<ClientEndpoint, PeriodicRequest> invalidSubscriberList;
-    private final Scheduler scheduler;
-    private final NotificationTask notificationTask;
-    private final ScheduledExecutorService notificationExecutor;
-    private final ScheduledExecutorService rttExecutor;
 
 
-    private CoapClient client;
+
+    public ExampleReverseProxy getReverseProxy() {
+        return reverseProxy;
+    }
 
     private ExampleReverseProxy reverseProxy;
 
-    Lock lock;
-    Condition newNotification;
-
-    private RttTask rttTask;
-
-    private AtomicBoolean observeEnabled;
-    private AtomicBoolean sendEvaluateRtt;
-
-    long emulatedDelay;
 
     public ReverseProxyResource(String name, URI uri, ResourceAttributes resourceAttributes, NetworkConfig networkConfig, ExampleReverseProxy reverseProxy) {
         super(name);
@@ -82,20 +68,8 @@ public class ReverseProxyResource extends CoapResource {
             this.setObservable(true);
             setObserveType(Type.CON);
         }
-        client = new CoapClient(this.uri);
-        client.setEndpoint(reverseProxy.getUnicastEndpoint());
-
-
-        scheduler = new Scheduler();
-        notificationTask = new NotificationTask();
-        notificationExecutor = Executors.newScheduledThreadPool(1);
-        rttExecutor = Executors.newScheduledThreadPool(1);
         this.reverseProxy = reverseProxy;
-        lock = new ReentrantLock();
-        newNotification = lock.newCondition();
-        rttTask = new RttTask();
-        observeEnabled = new AtomicBoolean(false);
-        sendEvaluateRtt = new AtomicBoolean(true);
+
     }
 
     @Override
@@ -156,73 +130,14 @@ public class ReverseProxyResource extends CoapResource {
      * @param exchange the CoapExchange for the simple API
      */
     public void handleGET(CoapExchange exchange) {
-        LOGGER.log(Level.FINER, "handleGET(" + exchange + ")");
-        Request request = exchange.advanced().getRequest();
-        if(request.getOptions().getObserve() != null && request.getOptions().getObserve() == 0)
-        {
-            //Observe Request
-            //exchange.advanced().sendAccept();
-            PeriodicRequest pr = handleGETCoRE(exchange);
-            ResponseCode res = pr.getResponseCode();
-            if(res == ResponseCode.CONTENT){
-                // create Observe request for the first client
-                if(observeEnabled.compareAndSet(false, true)){
-                    relation = client.observe(new ReverseProxyCoAPHandler(this));
-                    Response responseForClients = getLast(request, pr);
-                    Date now = new Date();
-                    long timestamp = now.getTime();
-                    updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
-                    exchange.respond(responseForClients);
-                    LOGGER.info("Start Notification Task");
-                    notificationExecutor.submit(notificationTask);
-                    rttExecutor.submit(rttTask);
-                }else{
-                    //reply to client
-                    Date now = new Date();
-                    long timestamp = now.getTime();
-                    long elapsed = timestamp - pr.getTimestampLastNotificationSent();
-                    if(pr.getPmin() <= elapsed || pr.getTimestampLastNotificationSent() == -1)
-                    {
-                        Response responseForClients = getLast(request, pr);
-                        //save lastNotification for the client
-                        updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
-                        exchange.respond(responseForClients);
-                        lock.lock();
-                        newNotification.signalAll();
-                        lock.unlock();
-                    }
-
-                }
-            }
-            else if(res == ResponseCode.FORBIDDEN){
-                Response response = getLast(request, getSubscriberCopy(new ClientEndpoint(request.getSource(), request.getSourcePort())));
-                response.getOptions().removeObserve();
-                exchange.respond(response);
-            } else {
-                exchange.respond(res);
-            }
-        }else if((request.getOptions().getObserve() != null && request.getOptions().getObserve() == 1)){
-
-            //Cancel Observe Request
-            Response responseForClients;
-            if(relation == null || relation.getCurrent() == null){
-                responseForClients = new Response(ResponseCode.INTERNAL_SERVER_ERROR);
-            } else {
-                responseForClients = getLast(request, getSubscriberCopy(new ClientEndpoint(request.getSource(), request.getSourcePort())));
-                responseForClients.getOptions().removeObserve();
-            }
-            exchange.respond(responseForClients);
-        } else{
-            // Normal GET
-            Response response = forwardRequest(exchange.advanced().getRequest());
-            exchange.respond(response);
-        }
+        Response response = forwardRequest(exchange.advanced().getRequest());
+        exchange.respond(response);
     }
 
     /**
      * Forward incoming request to the end device.
      *
-     * @param request the request received from the client
+     * @param incomingRequest the request received from the client
      * @return the response received from the end device
      */
     public Response forwardRequest(Request incomingRequest) {
@@ -261,36 +176,6 @@ public class ReverseProxyResource extends CoapResource {
             LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
             return new Response(ResponseCode.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    private Response getLast(Request request, PeriodicRequest pr) {
-        LOGGER.log(Level.INFO, "getLast(" + request + ", " + pr + ")");
-        if(pr == null){
-            return new Response(ResponseCode.INTERNAL_SERVER_ERROR);
-        }
-        lock.lock();
-        try {
-            while(relation == null || relation.getCurrent() == null)
-                newNotification.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally{
-            lock.unlock();
-        }
-        Response notification = relation.getCurrent().advanced();
-
-        // accept without create a new observing relationship
-        Response responseForClients = new Response(notification.getCode());
-        // copy payload
-        byte[] payload = notification.getPayload();
-        responseForClients.setPayload(payload);
-
-        // copy every option
-        responseForClients.setOptions(new OptionSet(notification.getOptions()));
-        responseForClients.setDestination(request.getSource());
-        responseForClients.setDestinationPort(request.getSourcePort());
-        responseForClients.setToken(request.getToken());
-        return responseForClients;
     }
 
     public void setTimestamp(long timestamp) {
@@ -334,218 +219,13 @@ public class ReverseProxyResource extends CoapResource {
         }
     }
 
-    /**
-     * Update the RTT of this resource.
-     * If the new RTT is worse (higher) than the one adopted by the scheduler previously,
-     * checks if the scheduling schema is still feasible.
-     *
-     * @param currentRTO the new RTT
-     */
-    public void updateRTT(long currentRTO) {
-        LOGGER.log(Level.FINER, "updateRTO(" + currentRTO + ")");
-        LOGGER.info("Last Valid RTT= " + String.valueOf(lastValidRtt) + " - currentRTO= " + String.valueOf(currentRTO));
-        rtt = currentRTO;
-        if((currentRTO - THRESHOLD) > lastValidRtt){ //worse RTT
-            scheduleFeasibles();
-        } /*else if(!invalidSubscriverEmpty()){ // better RTT and pending requests
-			Map<ClientEndpoint, PeriodicRequest> tmpInvalid = getInvalidSubscriberList();
-			Map<ClientEndpoint, PeriodicRequest> tmpSubscriber = getSubscriberList();
-			boolean changed = false;
-			for(Entry<ClientEndpoint, PeriodicRequest> entry : tmpInvalid.entrySet()){
-				if(!tmpSubscriber.containsKey(entry.getKey())){ //not in subscriber
-					if(entry.getValue().getPmax() < rtt){
-						addSubscriber(entry.getKey(), entry.getValue());
-						removeInvalidSubscriber(entry.getKey());
-						changed = true;
-					}
-				} else {
-					removeInvalidSubscriber(entry.getKey());
-				}
-			}
-			if(changed) scheduleFeasibles();
-		}*/
-    }
-
-    /**
-     * Checks if the Observing relationship can be added.
-     *
-     * @param exchange the exchange that generates the Observing request
-     * @return the PeriodicRequest representing the Periodic Observing relationship
-     */
-    private PeriodicRequest handleGETCoRE(CoapExchange exchange) {
-        LOGGER.log(Level.FINER, "handleGETCoRE(" + exchange + ")");
-        Request request = exchange.advanced().getCurrentRequest();
-        ClientEndpoint clientEndpoint = new ClientEndpoint(request.getSource(), request.getSourcePort());
-        PeriodicRequest pr = getSubscriberCopy(clientEndpoint);
-        if(pr == null)
-            pr = new PeriodicRequest();
-
-        // Both parameters have been set
-        if(pr.getPmin() != -1 && pr.getPmax() != -1){
-            if(pr.isAllowed() || scheduleNewRequest(pr)){
-                pr.setCommittedPeriod(this.notificationPeriodMax);
-                pr.setExchange(exchange);
-                pr.setOriginRequest(request);
-                pr.setResponseCode(ResponseCode.CONTENT);
-                addSubscriber(clientEndpoint, pr);
-                return pr;
-            } else{
-                // Scheduling is not feasible
-                removeSubscriber(clientEndpoint);
-                return new PeriodicRequest(ResponseCode.NOT_ACCEPTABLE);
-            }
-        }
-        else{
-            //No parameter has been set
-			/* TODO Decide what to do in the case of an observing relationship where the client didn't set any parameter
-			 * Now we stop it and reply with an error.
-			 */
-            removeSubscriber(clientEndpoint);
-            return new PeriodicRequest(ResponseCode.FORBIDDEN);
-        }
-    }
 
 
-    private synchronized void updateSubscriberNotification(ClientEndpoint clientEndpoint,
-                                                           long timestamp, Response response) {
-        LOGGER.log(Level.FINER, "updateSubscriberNotification(" + clientEndpoint+ ", "+ timestamp+", "+response+")");
-        if(this.subscriberList.containsKey(clientEndpoint)){
-            this.subscriberList.get(clientEndpoint).setTimestampLastNotificationSent(timestamp);
-            this.subscriberList.get(clientEndpoint).setLastNotificationSent(response);
-        }
-
-    }
-    //private void addSubscriber(ClientEndpoint clientEndpoint, PeriodicRequest pr) {
-
-
-    //private void removeSubscriber(ClientEndpoint clientEndpoint) {
-    private synchronized void removeSubscriber(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.INFO, "removeSubscriber(" + clientEndpoint + ")");
-        this.subscriberList.remove(clientEndpoint);
-        dumpSubscribers();
-    }
-
-    //private PeriodicRequest getSubscriber(ClientEndpoint clientEndpoint) {
     private synchronized PeriodicRequest getSubscriber(ClientEndpoint clientEndpoint) {
         LOGGER.log(Level.FINER, "getSubscriber(" + clientEndpoint + ")");
         if(this.subscriberList.containsKey(clientEndpoint))
             return this.subscriberList.get(clientEndpoint);
         return null;
-    }
-
-    //public Map<ClientEndpoint, PeriodicRequest> getSubscriberListCopy() {
-    public synchronized Map<ClientEndpoint, PeriodicRequest> getSubscriberListCopy() {
-        LOGGER.log(Level.FINER, "getSubscriberList()");
-		/*Map<ClientEndpoint, PeriodicRequest> tmp = new HashMap<ClientEndpoint, PeriodicRequest>();
-		for(Entry<ClientEndpoint, PeriodicRequest> entry : this.subscriberList.entrySet()){
-			ClientEndpoint cl = new ClientEndpoint(entry.getKey().getAddress(), entry.getKey().getPort());
-			PeriodicRequest pr = new PeriodicRequest();
-			pr.setAllowed(entry.getValue().isAllowed());
-			pr.setCommittedPeriod(entry.getValue().getCommittedPeriod());
-			pr.setExchange(entry.getValue().getExchange());
-			pr.setLastNotificationSent(entry.getValue().getLastNotificationSent());
-			pr.setOriginRequest(entry.getValue().getOriginRequest());
-			pr.setPmax(entry.getValue().getPmax());
-			pr.setPmin(entry.getValue().getPmin());
-			pr.setTimestampLastNotificationSent(entry.getValue().getTimestampLastNotificationSent());
-			pr.setResponseCode(entry.getValue().getResponseCode());
-			tmp.put(cl, pr);
-		}
-		return tmp;*/
-        return this.subscriberList;
-    }
-
-
-    /**
-     * Create an observing request from the proxy to the end device.
-     * Use the pmin and pmax computed by the scheduler.
-     *
-     * @return the Error ResponseCode or null if success.
-     */
-    private void setObservingQoS() {
-        LOGGER.log(Level.INFO, "setObserving()");
-        long min_period = (this.notificationPeriodMin) / 1000; // convert to second
-        long max_period = (this.notificationPeriodMax) / 1000; // convert to second
-        String uri = this.uri+"?"+CoAP.MINIMUM_PERIOD +"="+ min_period + "&" + CoAP.MAXIMUM_PERIOD +"="+ max_period;
-        Request request = new Request(Code.PUT, Type.CON);
-        request.setURI(uri);
-        request.send(reverseProxy.getUnicastEndpoint());
-        LOGGER.info("setObservingQos - " + request);
-        Response response;
-        long timeout = WAIT_FACTOR;
-        try {
-            while(timeout < 5*WAIT_FACTOR){
-                if(rtt == -1){
-                    response = request.waitForResponse(500 * timeout);
-                } else
-                {
-                    response = request.waitForResponse(rtt * timeout);
-                }
-                // receive the response
-
-                if (response != null) {
-                    LOGGER.info("Coap response received. - " + response);
-
-                    // get RTO from the response
-
-                    //TODO uncomment
-                    //this.rtt = response.getRemoteEndpoint().getCurrentRTO();
-                    break;
-                } else {
-                    LOGGER.warning("No response received.");
-                    timeout += WAIT_FACTOR;
-                }
-            }
-            if(timeout == 5*WAIT_FACTOR){
-                LOGGER.warning("Observig cannot be set on remote endpoint.");
-            }
-        } catch (InterruptedException e) {
-            LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Produce a scheduler schema only for feasible requests.
-     */
-    private void scheduleFeasibles() {
-        LOGGER.log(Level.INFO, "scheduleFeasibles()");
-        boolean end = false;
-        while(!end) // delete the most demanding client
-        {
-            dumpSubscribers();
-            ScheduleResults ret = schedule();
-            end = ret.isValid();
-            if(!end){
-                ClientEndpoint client = minPmaxClient();
-                if(client != null){
-                    LOGGER.info("Remove client:" + client.toString());
-                    deleteSubscriptionFromProxy(client);
-                }
-                else
-                    end = true;
-            }
-            else{
-                boolean periodChanged = updatePeriods(ret);
-                if(periodChanged){
-                    setObservingQoS();
-                }
-            }
-
-        }
-    }
-
-    private void deleteSubscriptionFromProxy(ClientEndpoint client) {
-        LOGGER.log(Level.INFO, "deleteSubscriptionFromProxy(" + client + ")");
-        PeriodicRequest invalid = getSubscriberCopy(client);
-		/*invalid.setAllowed(false);
-		addInvalidSubscriber(client, invalid);*/
-        removeSubscriber(client);
-        Response response = getLast(invalid.getOriginRequest(), invalid);
-        response.getOptions().removeObserve();
-        ObserveRelation rel = invalid.getExchange().advanced().getRelation();
-        invalid.getExchange().advanced().setRelation(null);
-        invalid.getExchange().respond(response);
-        rel.cancel();
     }
 
 //	private synchronized void addInvalidSubscriber(ClientEndpoint client,
@@ -582,152 +262,6 @@ public class ReverseProxyResource extends CoapResource {
 //	private synchronized boolean invalidSubscriverEmpty() {
 //		return this.invalidSubscriberList.isEmpty();
 //	}
-
-    private boolean updatePeriods(ScheduleResults ret) {
-        LOGGER.log(Level.INFO, "updatePeriods(" + ret + ")");
-        int pmin = ret.getPmin();
-        int pmax = ret.getPmax();
-        this.lastValidRtt = ret.getLastRtt();
-        boolean changed = false;
-        if(this.notificationPeriodMin == 0 || (this.notificationPeriodMin != 0 && this.notificationPeriodMin != pmin)){
-            this.notificationPeriodMin = pmin;
-            changed = true;
-        }
-        if(this.notificationPeriodMax == Integer.MAX_VALUE ||
-                (this.notificationPeriodMax != Integer.MAX_VALUE && this.notificationPeriodMax != pmax)){
-            this.notificationPeriodMax = pmax;
-            changed = true;
-        }
-
-        return changed;
-
-    }
-
-    /**
-     * Retrieve the client with the minimum pmax.
-     *
-     * @return the PeriodicRequest with the minimum pmax.
-     */
-    private ClientEndpoint minPmaxClient() {
-        LOGGER.log(Level.FINER, "minPmaxClient()");
-        long minPmax = Integer.MAX_VALUE;
-        ClientEndpoint ret = null;
-        Map<ClientEndpoint, PeriodicRequest> tmp = getSubscriberListCopy();
-        for(Entry<ClientEndpoint, PeriodicRequest> entry : tmp.entrySet()){
-            if(entry.getValue().getPmax() < minPmax){
-                minPmax = entry.getValue().getPmax();
-                ret = entry.getKey();
-            }
-        }
-        return ret;
-    }
-
-    /**
-     * Verify if the new request can be accepted.
-     *
-     * @param remoteEndpoint
-     * @param reverseProxyResource
-     */
-    private boolean scheduleNewRequest(QoSParameters params) {
-        LOGGER.log(Level.INFO, "scheduleNewRequest(" + params + ")");
-        if(this.rtt == -1) this.rtt = evaluateRtt();
-        if(params.getPmin() < this.rtt) return false;
-        ScheduleResults ret = schedule();
-        LOGGER.log(Level.INFO, " End scheduleNewRequest(" + params + ")");
-        if(ret.isValid()){
-            boolean periodChanged = updatePeriods(ret);
-            if(periodChanged){
-                setObservingQoS();
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Invokes the scheduler on the set of pending requests.
-     * Produces a new scheduler schema.
-     *
-     * @return true if success, false otherwise.
-     */
-    //private ScheduleResults schedule(){
-    private synchronized ScheduleResults schedule(){
-        LOGGER.log(Level.FINER, "schedule()");
-        long rtt = this.rtt;
-        LOGGER.info("schedule() - Rtt: " + this.rtt);
-
-        if(this.subscriberList.isEmpty()){
-            return new ScheduleResults(0, Integer.MAX_VALUE, rtt, false);
-        }
-        List<Task> tasks = new ArrayList<Task>();
-        //TODO remove
-        dumpSubscribers();
-        for(ClientEndpoint ce : this.subscriberList.keySet()){
-            tasks.add(new Task(ce, this.subscriberList.get(ce)));
-        }
-
-        Periods periods = scheduler.schedule(tasks, rtt);
-
-        int periodMax = periods.getPmax();
-        int periodMin = periods.getPmin();
-
-        if(periodMax > rtt){
-            for(Task t : tasks){
-                this.subscriberList.get(t.getClient()).setAllowed(true);
-            }
-            return new ScheduleResults(periodMin, periodMax, rtt, true);
-        }
-        return new ScheduleResults(periodMin, periodMax, rtt, false);
-    }
-
-    private void dumpSubscribers() {
-        LOGGER.log(Level.INFO, "dumpSubscribers()");
-        for(Entry<ClientEndpoint, PeriodicRequest> entry : this.subscriberList.entrySet()){
-            LOGGER.info(entry.getKey().toString() + " " + entry.getValue().toString());
-        }
-
-    }
-
-    /**
-     * Evaluates RTT of the end device by issuing a GET request.
-     * @return
-     */
-    private long evaluateRtt() {
-        LOGGER.log(Level.INFO, "evaluateRtt()");
-        Request request = new Request(Code.GET, Type.CON);
-        request.setURI(this.uri);
-        long rtt = this.rtt;
-        if(sendEvaluateRtt.compareAndSet(true, false)) // only one message
-        {
-            request.send(this.getEndpoints().get(0));
-            long timeout = WAIT_FACTOR;
-            Response response;
-            try {
-                while(timeout < 5*WAIT_FACTOR){
-                    if(rtt == -1){
-                        response = request.waitForResponse(5000 * timeout);
-                    } else
-                    {
-                        response = request.waitForResponse(rtt * timeout);
-                    }
-
-                    if (response != null) {
-                        LOGGER.finer("Coap response received.");
-                        // get RTO from the response
-                        rtt = response.getRemoteEndpoint().getCurrentRTO() + emulatedDelay;
-                        break;
-                    } else {
-                        LOGGER.warning("No response received.");
-                        timeout += WAIT_FACTOR;
-                    }
-                }
-            } catch (InterruptedException e) {
-                LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
-            }
-            sendEvaluateRtt.set(true);
-        }
-        return rtt;
-    }
 
     /**
      * Translate request coming from the end device into a response for the client.
@@ -816,200 +350,4 @@ public class ReverseProxyResource extends CoapResource {
         LOGGER.finer("Incoming request translated correctly");
         return outgoingRequest;
     }
-
-    /**
-     * Thread class to send periodic notifications to clients.
-     *
-     */
-    private class NotificationTask implements Runnable{
-
-        private boolean to_change = true;
-        @Override
-        public void run() {
-            while(observeEnabled.get()){
-                LOGGER.log(Level.INFO, "NotificationTask Run");
-                long delay = notificationPeriodMax;
-                if(relation == null || relation.getCurrent() != null){
-                    Map<ClientEndpoint, PeriodicRequest> tmp = getSubscriberListCopy();
-                    for(Entry<ClientEndpoint, PeriodicRequest> entry : tmp.entrySet()){
-                        PeriodicRequest pr = entry.getValue();
-                        ClientEndpoint cl = entry.getKey();
-                        LOGGER.info("Entry - " + pr.toString() + ":" + pr.isAllowed());
-                        if(pr.isAllowed()){
-                            Date now = new Date();
-                            long timestamp = now.getTime();
-                            long clientRTT = reverseProxy.getClientRTT(cl.getAddress(), cl.getPort());
-                            long nextInterval = 0;
-                            long deadline = 0;
-                            if(pr.getTimestampLastNotificationSent() == -1){
-                                nextInterval = (timestamp + ((long)pr.getPmin()));
-                                deadline = timestamp + ((long)pr.getPmax() - clientRTT);
-                            }
-                            else{
-                                nextInterval = (pr.getTimestampLastNotificationSent() + ((long)pr.getPmin()));
-                                deadline = pr.getTimestampLastNotificationSent() + ((long)pr.getPmax() - clientRTT);
-                            }
-							/*System.out.println("RTT " + rtt);
-							System.out.println("timestamp " + timestamp);
-							System.out.println("next Interval " + nextInterval);
-							System.out.println("client RTT " + clientRTT);
-							System.out.println("deadline without rtt " + deadlinewithout );
-							System.out.println("deadline " + deadline);*/
-                            if(timestamp >= nextInterval){
-                                System.out.println("Time to send");
-                                if(pr.getLastNotificationSent().equals(relation.getCurrent().advanced())){ //old notification
-                                    System.out.println("Old Notification");
-                                    if(delay > (deadline - timestamp) && (deadline - timestamp) >= 0)
-                                        delay = (deadline - timestamp);
-                                    //System.out.println("Delay " + delay);
-                                    //if((deadline - timestamp) < 0)
-                                    //sendValidated(cl, pr, timestamp);
-
-                                } else{
-                                    System.out.println("New notification");
-                                    if(to_change)
-                                        sendValidated(cl, pr, timestamp);
-                                    to_change = false;
-
-                                }
-                            } else { // too early
-                                System.out.println("Too early");
-                                long nextawake = timestamp + delay;
-                                //System.out.println("next Awake " + nextawake);
-                                if(nextawake >= deadline){ // check if next awake will be to late
-                                    if(delay > (deadline - timestamp))
-                                        delay = (deadline - timestamp);
-                                }
-                                //System.out.println("Delay " + delay);
-                            }
-                        }
-
-                    }
-                }
-                to_change = true;
-                LOGGER.info("Delay " + delay);
-                try {
-                    lock.lock();
-                    newNotification.await(delay, TimeUnit.MILLISECONDS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
-                }
-            }
-        }
-
-        /**
-         * Send if the last notification is still valid
-         * @param cl
-         *
-         * @param pr PeriodicRequest  to reply to
-         * @param timestamp the timestamp
-         */
-        private void sendValidated(ClientEndpoint cl, PeriodicRequest pr, long timestamp) {
-            LOGGER.log(Level.FINER, "sendValidated("+ cl+", "+pr+", "+timestamp+")");
-            long timestampResponse = relation.getCurrent().advanced().getTimestamp();
-            Response response = relation.getCurrent().advanced();
-            long maxAge = response.getOptions().getMaxAge();
-
-            if(timestampResponse + (maxAge * 1000) > timestamp){ //already take into account the rtt experimented by the notification
-                LOGGER.info("sendValidated to be sent("+ cl+", "+pr+", "+timestamp+")");
-				/*updateSubscriberNotification(cl, timestamp, response);
-				Response responseForClients = new Response(response.getCode());
-				// copy payload
-				byte[] payload = response.getPayload();
-				responseForClients.setPayload(payload);
-
-				// copy the timestamp
-				responseForClients.setTimestamp(timestamp);
-
-				// copy every option
-				responseForClients.setOptions(new OptionSet(
-						response.getOptions()));
-				responseForClients.setDestination(cl.getAddress());
-				responseForClients.setDestinationPort(cl.getPort());
-				responseForClients.setToken(pr.getOriginRequest().getToken());
-
-				pr.getExchange().respond(responseForClients);*/
-                changed();
-
-            } else {
-                LOGGER.severe("Response no more valid");
-            }
-
-        }
-    }
-
-    public class RttTask implements Runnable {
-
-        private static final int RENEW_COUNTER = 10;
-        private int count = 0;
-        @Override
-        public void run() {
-            while(observeEnabled.get()){
-                LOGGER.info("RttTask");
-	    		/*if(count < RENEW_COUNTER){
-	    			count++;
-	    			updateRTT(evaluateRtt());
-	    		} else {
-	    			count = 0;
-	    			updateRTT(renewRegistration());
-	    		}
-	    		*/
-                updateRTT(evaluateRtt());
-                try {
-                    Thread.sleep(Math.max(PERIOD_RTT, notificationPeriodMin));
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        private long renewRegistration() {
-            Request refresh = Request.newGet();
-            refresh.setOptions(relation.getRequest().getOptions());
-            // make sure Observe is set and zero
-            refresh.setObserve();
-            // use same Token
-            refresh.setToken(relation.getRequest().getToken());
-            refresh.setDestination(relation.getRequest().getDestination());
-            refresh.setDestinationPort(relation.getRequest().getDestinationPort());
-            refresh.send(reverseProxy.getUnicastEndpoint());
-            LOGGER.info("Re-registering for " + relation.getRequest());
-            Response response;
-            long timeout = WAIT_FACTOR;
-            try {
-                while(timeout < 5*WAIT_FACTOR){
-                    if(rtt == -1){
-                        response = refresh.waitForResponse(5000 * timeout);
-                    } else
-                    {
-                        response = refresh.waitForResponse(rtt * timeout);
-                    }
-                    // receive the response
-
-                    if (response != null) {
-                        LOGGER.info("Coap response received. - " + response);
-
-                        // get RTO from the response
-
-                        //TODO uncomment
-                        return response.getRemoteEndpoint().getCurrentRTO();
-                    } else {
-                        LOGGER.warning("No response received.");
-                        timeout += WAIT_FACTOR;
-                    }
-                }
-                if(timeout == 5*WAIT_FACTOR){
-                    LOGGER.warning("Observig cannot be set on remote endpoint.");
-                }
-            } catch (InterruptedException e) {
-                LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
-            }
-            return 0;
-        }
-
-    }
-
 }
