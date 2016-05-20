@@ -198,4 +198,5 @@ public class CoapObserveRelation {
 			} , timeout, TimeUnit.MILLISECONDS);
 		setReregistrationHandle(f);
 	}
+
 }

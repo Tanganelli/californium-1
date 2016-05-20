@@ -51,7 +51,7 @@ public class InterfaceRequest{
     }
 
     public String toString(){
-        return "("+super.toString()+")";
+        return "("+ String.valueOf(allowed)+", "+String.valueOf(pmin)+" - "+String.valueOf(pmax)+")";
     }
 
     public double getPmin() {

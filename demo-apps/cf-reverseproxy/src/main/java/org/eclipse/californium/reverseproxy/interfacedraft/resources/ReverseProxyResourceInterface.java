@@ -13,8 +13,6 @@ import org.eclipse.californium.core.server.resources.ResourceAttributes;
 import org.eclipse.californium.examples.ExampleReverseProxy;
 import org.eclipse.californium.reverseproxy.interfacedraft.*;
 import org.eclipse.californium.reverseproxy.resources.ClientEndpoint;
-import org.eclipse.californium.reverseproxy.resources.Periods;
-import org.eclipse.californium.reverseproxy.resources.ReverseProxyCoAPHandler;
 import org.eclipse.californium.reverseproxy.resources.ReverseProxyResource;
 
 import java.net.URI;
@@ -32,31 +30,37 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      * is used as the timeout for waiting replies from the end device.*/
     private static long WAIT_FACTOR = 10;
 
-    private static final long PERIOD_RTT = 10000; // 10 sec
+    public InterfaceObserveRelationContainer getObserveRelations() {
+        return observeRelations;
+    }
 
-    private static final long THRESHOLD = 500; // 500 ms as threshold
+    /* The the list of CoAP observe relations. */
+    private InterfaceObserveRelationContainer observeRelations;
 
     public double getNotificationPeriod() {
         return notificationPeriod;
-    }
-
-    public void setNotificationPeriod(double notificationPeriod) {
-        this.notificationPeriod = notificationPeriod;
     }
 
     public CoapObserveRelation getRelation() {
         return relation;
     }
 
-    public void setRelation(CoapObserveRelation relation) {
-        this.relation = relation;
+    private double notificationPeriod;
+
+    public void setRtt(long rtt) {
+        this.rtt = rtt;
     }
 
-    private double notificationPeriod;
     private long rtt;
+
+    public long getLastValidRtt() {
+        return lastValidRtt;
+    }
+
     private long lastValidRtt;
     private final Map<ClientEndpoint, InterfaceRequest> subscriberList;
     private final NotificationTask notificationTask;
+
     private RttTask rttTask;
     private final ScheduledExecutorService rttExecutor;
 
@@ -104,11 +108,8 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
 
         incomingRequest.getOptions().clearUriPath();
 
-        // create a new request to forward to the requested coap server
-        Request outgoingRequest = null;
-
         // create the new request from the original
-        outgoingRequest = getRequest(incomingRequest);
+        Request outgoingRequest = getRequest(incomingRequest);
 
 
         // execute the request
@@ -232,16 +233,6 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         return 0;
     }
 
-    private synchronized InterfaceRequest getSubscriberCopy(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.INFO, "getSubscriberCopy(" + clientEndpoint + ")");
-        return this.subscriberList.get(clientEndpoint);
-    }
-
-    private synchronized void addSubscriber(ClientEndpoint clientEndpoint, InterfaceRequest pr) {
-        LOGGER.log(Level.FINER, "addSubscriber(" + clientEndpoint+ ", "+ pr +")");
-        this.subscriberList.put(clientEndpoint, pr);
-    }
-
     /**
      * Handles the GET request in the given CoAPExchange. Checks if it is an observing request
      * for which pmin and pmax have been already set.
@@ -254,7 +245,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      */
     @Override
     public void handleGET(CoapExchange exchange) {
-        LOGGER.log(Level.FINER, "handleGET(" + exchange + ")");
+        LOGGER.log(Level.INFO, "handleGET(" + exchange + ")");
         Request request = exchange.advanced().getRequest();
         if(request.getOptions().getObserve() != null && request.getOptions().getObserve() == 0)
         {
@@ -319,6 +310,11 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         }
     }
 
+    public synchronized Map<ClientEndpoint, InterfaceRequest> getSubscriberListCopy() {
+        LOGGER.log(Level.FINER, "getSubscriberList()");
+        return this.subscriberList;
+    }
+
     private synchronized void updateSubscriberNotification(ClientEndpoint clientEndpoint,
                                                            long timestamp, Response response) {
         LOGGER.log(Level.FINER, "updateSubscriberNotification(" + clientEndpoint+ ", "+ timestamp+", "+response+")");
@@ -326,7 +322,16 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             this.subscriberList.get(clientEndpoint).setTimestampLastNotificationSent(timestamp);
             this.subscriberList.get(clientEndpoint).setLastNotificationSent(response);
         }
+    }
 
+    private synchronized InterfaceRequest getSubscriberCopy(ClientEndpoint clientEndpoint) {
+        LOGGER.log(Level.INFO, "getSubscriberCopy(" + clientEndpoint + ")");
+        return this.subscriberList.get(clientEndpoint);
+    }
+
+    private synchronized void addSubscriber(ClientEndpoint clientEndpoint, InterfaceRequest pr) {
+        LOGGER.log(Level.FINER, "addSubscriber(" + clientEndpoint+ ", "+ pr +")");
+        this.subscriberList.put(clientEndpoint, pr);
     }
 
     /**
@@ -390,9 +395,9 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
 
     /**
      * Evaluates RTT of the end device by issuing a GET request.
-     * @return
+     * @return rtt
      */
-    private long evaluateRtt() {
+    protected long evaluateRtt() {
         LOGGER.log(Level.INFO, "evaluateRtt()");
         Request request = new Request(CoAP.Code.GET, CoAP.Type.CON);
         request.setURI(this.getURI());
@@ -458,47 +463,12 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         return responseForClients;
     }
 
-    public synchronized Map<ClientEndpoint, InterfaceRequest> getSubscriberListCopy() {
-        LOGGER.log(Level.FINER, "getSubscriberList()");
-        return this.subscriberList;
-    }
 
-    /**
-     * Update the RTT of this resource.
-     * If the new RTT is worse (higher) than the one adopted by the scheduler previously,
-     * checks if the scheduling schema is still feasible.
-     *
-     * @param currentRTO the new RTT
-     */
-    public void updateRTT(long currentRTO) {
-        LOGGER.log(Level.FINER, "updateRTO(" + currentRTO + ")");
-        LOGGER.info("Last Valid RTT= " + String.valueOf(lastValidRtt) + " - currentRTO= " + String.valueOf(currentRTO));
-        rtt = currentRTO;
-        if((currentRTO - THRESHOLD) > lastValidRtt){ //worse RTT
-            scheduleFeasibles();
-        } /*else if(!invalidSubscriverEmpty()){ // better RTT and pending requests
-			Map<ClientEndpoint, PeriodicRequest> tmpInvalid = getInvalidSubscriberList();
-			Map<ClientEndpoint, PeriodicRequest> tmpSubscriber = getSubscriberList();
-			boolean changed = false;
-			for(Entry<ClientEndpoint, PeriodicRequest> entry : tmpInvalid.entrySet()){
-				if(!tmpSubscriber.containsKey(entry.getKey())){ //not in subscriber
-					if(entry.getValue().getPmax() < rtt){
-						addSubscriber(entry.getKey(), entry.getValue());
-						removeInvalidSubscriber(entry.getKey());
-						changed = true;
-					}
-				} else {
-					removeInvalidSubscriber(entry.getKey());
-				}
-			}
-			if(changed) scheduleFeasibles();
-		}*/
-    }
 
     /**
      * Produce a scheduler schema only for feasible requests.
      */
-    private void scheduleFeasibles() {
+    protected void scheduleFeasibles() {
         LOGGER.log(Level.INFO, "scheduleFeasibles()");
         boolean end = false;
         while(!end) // delete the most demanding client
@@ -581,12 +551,11 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      * Create an observing request from the proxy to the end device.
      * Use the pmin and pmax computed by the scheduler.
      *
-     * @return the Error ResponseCode or null if success.
      */
     private void setObservingQoS() {
         LOGGER.log(Level.INFO, "setObserving()");
         double period = (this.notificationPeriod) / 1000; // convert to second
-        String uri = this.getURI()+"?"+Interface.MINIMUM_PERIOD +"="+ period + "&" + Interface.MAXIMUM_PERIOD +"="+ period;
+        String uri = this.getURI()+"?period="+ period;
         Request request = new Request(CoAP.Code.PUT, CoAP.Type.CON);
         request.setURI(uri);
         request.send(getReverseProxy().getUnicastEndpoint());
@@ -653,6 +622,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             tasks.add(tmp);
         }
 
+        //TODO add max-age
         double period = scheduler.schedule(tasks, rtt, 60);
 
 
@@ -671,6 +641,39 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             LOGGER.info(entry.getKey().toString() + " " + entry.getValue().toString());
         }
 
+    }
+
+    /**
+     * Invoked by the Resource Observer handler when a client cancel an observe subscription.
+     *
+     * @param clientEndpoint the Periodic Observing request that must be deleted
+     */
+    public void deleteSubscriptionsFromClients(ClientEndpoint clientEndpoint) {
+        LOGGER.log(Level.INFO, "deleteSubscriptionsFromClients(" + clientEndpoint + ")");
+        if(clientEndpoint != null){
+            removeSubscriber(clientEndpoint);
+
+            if(getSubscriberListCopy().isEmpty()){
+                LOGGER.log(Level.INFO, "SubscriberList Empty");
+                observeEnabled.set(false);
+                lock.lock();
+                newNotification.signalAll();
+                lock.unlock();
+                relation.proactiveCancel();
+            } else{
+                scheduleFeasibles();
+            }
+        }
+    }
+
+
+    public void setTimestamp(long timestamp) {
+        LOGGER.log(Level.FINER, "setTimestamp(" + timestamp + ")");
+        relation.getCurrent().advanced().setTimestamp(timestamp);
+        // Update also Max Age to consider Server RTT
+        LOGGER.info("MAX-AGE " + relation.getCurrent().advanced().getOptions().getMaxAge().toString());
+        LOGGER.info("RTT " + rtt);
+        relation.getCurrent().advanced().getOptions().setMaxAge(relation.getCurrent().advanced().getOptions().getMaxAge() - (rtt / 1000));
     }
 
 }

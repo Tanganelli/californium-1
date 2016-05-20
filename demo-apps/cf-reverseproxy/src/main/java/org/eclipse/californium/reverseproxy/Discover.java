@@ -25,7 +25,7 @@ public class Discover implements Runnable {
     private ReverseProxyHandler handler;
     private List<Server> serverList;
     private String name;
-    private final static Logger LOGGER = Logger.getLogger(Worker.class.getCanonicalName());
+    private final static Logger LOGGER = Logger.getLogger(Discover.class.getCanonicalName());
 
     public Discover(String name, Endpoint endpoint, ReverseProxyHandler handler, String serversConfig) {
         setName(name);
@@ -91,10 +91,15 @@ public class Discover implements Runnable {
                 }
                 request.setDestinationPort(Integer.parseInt(server.getPort()));
                 request.getOptions().setUriPath("/.well-known/core");
+                String[] params = new String[3];
+                params[0] = request.toString();
+                params[1] = request.getDestination().toString();
+                params[2] = String.valueOf(request.getDestinationPort());
+                LOGGER.log(Level.FINE, "Send Request [{0}] to {1}:{2}", params);
                 request.send(this.endpoint);
             }
         } catch (Throwable t) {
-                LOGGER.log(Level.FINE, "Worker [{0}] exception", getName());
+                LOGGER.log(Level.SEVERE, "Worker [{0}] exception", getName());
         }
     }
 

@@ -18,8 +18,8 @@ public class Scheduler {
         Task tminPmax = minPmax(tasks);
         double p = tminPmax.getPmax();
         boolean change = true;
-        boolean less = p <= rtt;
-        while(change && less){
+        boolean greater = p >= rtt;
+        while(change && greater){
             change = false;
             for(Task t : tasks){
                 double pc = t.getPmax() / Math.ceil((t.getPmin()-m)/p);
@@ -27,13 +27,13 @@ public class Scheduler {
                     change = true;
                     p = pc;
                 }
-                if(p > rtt){
-                    less = false;
+                if(p < rtt){
+                    greater = false;
                     break;
                 }
             }
         }
-        if(!less)
+        if(!greater)
             return 0.0;
         return p;
     }

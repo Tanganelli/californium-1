@@ -13,6 +13,7 @@ import org.eclipse.californium.reverseproxy.Discover;
 import org.eclipse.californium.reverseproxy.ReverseProxyHandler;
 import org.eclipse.californium.reverseproxy.ReverseProxyHandlerImpl;
 import org.eclipse.californium.reverseproxy.resources.ReverseProxyResource;
+import org.eclipse.californium.core.network.CoapEndpoint;
 
 import java.net.*;
 import java.util.*;
@@ -20,6 +21,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ExampleReverseProxy extends CoapServer {
@@ -40,7 +42,7 @@ public class ExampleReverseProxy extends CoapServer {
 
     private boolean running;
 
-    private Map<InetSocketAddress, Set<WebLink>> mapping;
+    protected Map<InetSocketAddress, Set<WebLink>> mapping;
 
     private Map<InetSocketAddress, Long> clientRTT;
 
@@ -51,7 +53,7 @@ public class ExampleReverseProxy extends CoapServer {
         handlerIPv4 = new ReverseProxyHandlerImpl(this);
         try {
             InetSocketAddress address =  new InetSocketAddress(InetAddress.getByName(ip), 5683);
-            setUnicastEndpoint(new CoAPEndpoint(address));
+            setUnicastEndpoint(new CoapEndpoint(address));
             this.addEndpoint(getUnicastEndpoint());
             this.discoverThreadIPv4 = new Discover("UDP-Discover-"+getUnicastEndpoint().getAddress().getHostName(), this.getUnicastEndpoint(), this.handlerIPv4, config);
             mapping = new HashMap<InetSocketAddress, Set<WebLink>>();
@@ -95,7 +97,7 @@ public class ExampleReverseProxy extends CoapServer {
      * @param response the discovery response
      */
     public synchronized void receiveDiscoveryResponse(Response response) {
-
+        LOGGER.log(Level.INFO, "Discovery Response [{0}]", response);
         if (response.getOptions().getContentFormat()!= MediaTypeRegistry.APPLICATION_LINK_FORMAT)
             return;
 
@@ -108,19 +110,21 @@ public class ExampleReverseProxy extends CoapServer {
             }
         }
         InetSocketAddress source = new InetSocketAddress(response.getSource(), response.getSourcePort());
-        mapping.put(source, to_add);
+        Set<WebLink> ret = mapping.put(source, to_add);
         for(Map.Entry<InetSocketAddress, Set<WebLink>> sa : mapping.entrySet()){
             for(WebLink l : sa.getValue()){
-                try {
-                    URI uri = new URI("coap://"+sa.getKey().toString().substring(1)+l.getURI());
-                    Resource res = new CoapResource(sa.getKey().toString().substring(1));
-                    this.add(res);
-                    Resource res2 = new ReverseProxyResource(l.getURI().substring(1), uri, l.getAttributes(), this.getUnicastEndpoint().getConfig(), this);
-                    res.add(res2);
-                } catch (URISyntaxException e) {
-                    System.err.println("Invalid URI: " + e.getMessage());
-
-                }
+            	if(!ret.contains(l)){
+	                try {
+	                    URI uri = new URI("coap://"+sa.getKey().toString().substring(1)+l.getURI());
+	                    Resource res = new CoapResource(sa.getKey().toString().substring(1));
+	                    this.add(res);
+	                    Resource res2 = new ReverseProxyResource(l.getURI().substring(1), uri, l.getAttributes(), this.getUnicastEndpoint().getConfig(), this);
+	                    res.add(res2);
+	                } catch (URISyntaxException e) {
+	                    System.err.println("Invalid URI: " + e.getMessage());
+	
+	                }
+            	}
             }
         }
     }
@@ -155,6 +159,14 @@ public class ExampleReverseProxy extends CoapServer {
 
     public void setUnicastEndpoint(Endpoint unicastEndpoint) {
         this.unicastEndpoint = unicastEndpoint;
+    }
+
+    public static void main(String[] args) throws SocketException {
+
+        // create server
+        ExampleReverseProxy proxy = new ExampleReverseProxy("/home/jacko/workspace/californium/servers.xml", "127.0.0.1");
+        proxy.start();
+
     }
 }
 

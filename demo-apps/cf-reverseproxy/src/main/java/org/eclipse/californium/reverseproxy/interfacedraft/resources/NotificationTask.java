@@ -39,8 +39,8 @@ public class NotificationTask implements Runnable{
                         Date now = new Date();
                         long timestamp = now.getTime();
                         long clientRTT = interface_resource.getReverseProxy().getClientRTT(cl.getAddress(), cl.getPort());
-                        long nextInterval = 0;
-                        long deadline = 0;
+                        long nextInterval;
+                        long deadline;
                         if(pr.getTimestampLastNotificationSent() == -1){
                             nextInterval = (timestamp + ((long)pr.getPmin()));
                             deadline = timestamp + ((long)pr.getPmax() - clientRTT);

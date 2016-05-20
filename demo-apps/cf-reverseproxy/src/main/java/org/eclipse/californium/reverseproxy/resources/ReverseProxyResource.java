@@ -1,40 +1,22 @@
 package org.eclipse.californium.reverseproxy.resources;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResource;
-import org.eclipse.californium.core.coap.CoAP;
+import org.eclipse.californium.core.coap.CoAP.Code;
+import org.eclipse.californium.core.coap.CoAP.ResponseCode;
+import org.eclipse.californium.core.coap.CoAP.Type;
 import org.eclipse.californium.core.coap.LinkFormat;
 import org.eclipse.californium.core.coap.OptionSet;
 import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
-import org.eclipse.californium.core.coap.CoAP.Code;
-import org.eclipse.californium.core.coap.CoAP.ResponseCode;
-import org.eclipse.californium.core.coap.CoAP.Type;
 import org.eclipse.californium.core.network.Exchange;
 import org.eclipse.californium.core.network.config.NetworkConfig;
-import org.eclipse.californium.core.observe.ObserveRelation;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 import org.eclipse.californium.core.server.resources.ResourceAttributes;
 import org.eclipse.californium.examples.ExampleReverseProxy;
-import org.eclipse.californium.reverseproxy.PeriodicRequest;
-import org.eclipse.californium.reverseproxy.QoSParameters;
-import org.eclipse.californium.reverseproxy.ReverseProxy;
+
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ReverseProxyResource extends CoapResource {
@@ -42,13 +24,7 @@ public class ReverseProxyResource extends CoapResource {
     /** The logger. */
     protected final static Logger LOGGER = Logger.getLogger(ReverseProxyResource.class.getCanonicalName());
 
-
-
     private final URI uri;
-
-    //private final Map<ClientEndpoint, PeriodicRequest> invalidSubscriberList;
-
-
 
     public ExampleReverseProxy getReverseProxy() {
         return reverseProxy;
@@ -176,56 +152,6 @@ public class ReverseProxyResource extends CoapResource {
             LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
             return new Response(ResponseCode.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    public void setTimestamp(long timestamp) {
-        LOGGER.log(Level.FINER, "setTimestamp(" + timestamp + ")");
-        relation.getCurrent().advanced().setTimestamp(timestamp);
-        // Update also Max Age to consider Server RTT
-        LOGGER.info("MAX-AGE " + relation.getCurrent().advanced().getOptions().getMaxAge().toString());
-        LOGGER.info("RTT " + rtt);
-        relation.getCurrent().advanced().getOptions().setMaxAge(relation.getCurrent().advanced().getOptions().getMaxAge() - (rtt / 1000));
-    }
-
-    public long getRtt() {
-        return rtt;
-    }
-
-    public void setRtt(long rtt) {
-        this.rtt = rtt;
-    }
-
-    /**
-     * Invoked by the Resource Observer handler when a client cancel an observe subscription.
-     *
-     * @param clientEndpoint the Periodic Observing request that must be deleted
-     * @param cancelledRelation
-     */
-    public void deleteSubscriptionsFromClients(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.INFO, "deleteSubscriptionsFromClients(" + clientEndpoint + ")");
-        if(clientEndpoint != null){
-            removeSubscriber(clientEndpoint);
-
-            if(getSubscriberListCopy().isEmpty()){
-                LOGGER.log(Level.INFO, "SubscriberList Empty");
-                observeEnabled.set(false);
-                lock.lock();
-                newNotification.signalAll();
-                lock.unlock();
-                relation.proactiveCancel();
-            } else{
-                scheduleFeasibles();
-            }
-        }
-    }
-
-
-
-    private synchronized PeriodicRequest getSubscriber(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.FINER, "getSubscriber(" + clientEndpoint + ")");
-        if(this.subscriberList.containsKey(clientEndpoint))
-            return this.subscriberList.get(clientEndpoint);
-        return null;
     }
 
 //	private synchronized void addInvalidSubscriber(ClientEndpoint client,

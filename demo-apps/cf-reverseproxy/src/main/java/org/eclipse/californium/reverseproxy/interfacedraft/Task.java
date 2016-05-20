@@ -10,10 +10,6 @@ public class Task extends InterfaceRequest {
         return client;
     }
 
-    public void setClient(ClientEndpoint client) {
-        this.client = client;
-    }
-
     private ClientEndpoint client;
 
     public Task(ClientEndpoint client){

@@ -1,25 +1,26 @@
 package org.eclipse.californium.reverseproxy.interfacedraft.resources;
 
-import org.eclipse.californium.core.coap.Request;
-import org.eclipse.californium.core.coap.Response;
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by giacomo on 13/05/16.
- */
 
 public class RttTask implements Runnable {
 
-    private static final int RENEW_COUNTER = 10;
-    private int count = 0;
+
+    private static final long PERIOD_RTT = 10000; // 10 sec
+    private static final long THRESHOLD = 500; // 500 ms as threshold
+
+    //private static final int RENEW_COUNTER = 10;
+    //private int count = 0;
 
     private ReverseProxyResourceInterface interface_resource;
     /** The logger. */
     protected final static Logger LOGGER = Logger.getLogger(RttTask.class.getCanonicalName());
+
     public RttTask(ReverseProxyResourceInterface interface_resource){
         this.interface_resource = interface_resource;
     }
+
 
     @Override
     public void run() {
@@ -33,9 +34,9 @@ public class RttTask implements Runnable {
 	    			updateRTT(renewRegistration());
 	    		}
 	    		*/
-            updateRTT(evaluateRtt());
+            updateRTT(interface_resource.evaluateRtt());
             try {
-                Thread.sleep(Math.max(PERIOD_RTT, notificationPeriodMin));
+                Thread.sleep((long) Math.max(PERIOD_RTT, interface_resource.getNotificationPeriod()));
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -43,7 +44,39 @@ public class RttTask implements Runnable {
         }
     }
 
-    private long renewRegistration() {
+    /**
+     * Update the RTT of this resource.
+     * If the new RTT is worse (higher) than the one adopted by the scheduler previously,
+     * checks if the scheduling schema is still feasible.
+     *
+     * @param currentRTO the new RTT
+     */
+    public void updateRTT(long currentRTO) {
+        LOGGER.log(Level.FINER, "updateRTO(" + currentRTO + ")");
+        LOGGER.info("Last Valid RTT= " + String.valueOf(interface_resource.getLastValidRtt()) + " - currentRTO= " + String.valueOf(currentRTO));
+        interface_resource.setRtt(currentRTO);
+        if((currentRTO - THRESHOLD) > interface_resource.getLastValidRtt()){ //worse RTT
+            interface_resource.scheduleFeasibles();
+        } /*else if(!invalidSubscriverEmpty()){ // better RTT and pending requests
+			Map<ClientEndpoint, PeriodicRequest> tmpInvalid = getInvalidSubscriberList();
+			Map<ClientEndpoint, PeriodicRequest> tmpSubscriber = getSubscriberList();
+			boolean changed = false;
+			for(Entry<ClientEndpoint, PeriodicRequest> entry : tmpInvalid.entrySet()){
+				if(!tmpSubscriber.containsKey(entry.getKey())){ //not in subscriber
+					if(entry.getValue().getPmax() < rtt){
+						addSubscriber(entry.getKey(), entry.getValue());
+						removeInvalidSubscriber(entry.getKey());
+						changed = true;
+					}
+				} else {
+					removeInvalidSubscriber(entry.getKey());
+				}
+			}
+			if(changed) scheduleFeasibles();
+		}*/
+    }
+
+    /*private long renewRegistration() {
         Request refresh = Request.newGet();
         refresh.setOptions(relation.getRequest().getOptions());
         // make sure Observe is set and zero
@@ -85,7 +118,8 @@ public class RttTask implements Runnable {
             LOGGER.warning("Receiving of response interrupted: " + e.getMessage());
         }
         return 0;
-    }
+    }*/
+
 
 }
 
