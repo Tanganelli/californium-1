@@ -14,7 +14,7 @@ public class Scheduler {
      * @param rtt the RTT of the resource
      * @return the Periods to be used with the end device
      */
-    public double schedule(List<Task> tasks, long rtt, long m){
+    public double schedule(List<Task> tasks, long rtt){
         Task tminPmax = minPmax(tasks);
         double p = tminPmax.getPmax();
         boolean change = true;
@@ -22,7 +22,7 @@ public class Scheduler {
         while(change && greater){
             change = false;
             for(Task t : tasks){
-                double pc = t.getPmax() / Math.ceil((t.getPmin()-m)/p);
+                double pc = t.getPmax() / Math.ceil((t.getPmin())/p);
                 if(p > pc){
                     change = true;
                     p = pc;
@@ -45,7 +45,7 @@ public class Scheduler {
      * @return the task with the minimum pmax
      */
     private Task minPmax(List<Task> tasks) {
-        double minimum = Integer.MAX_VALUE;
+        double minimum = Double.MAX_VALUE;
         Task ret = null;
         for(Task t : tasks){
             if(minimum > t.getPmax()){

@@ -1,11 +1,13 @@
 package org.eclipse.californium.examples;
 
 import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.CoapServer;
 import org.eclipse.californium.core.WebLink;
 import org.eclipse.californium.core.coap.LinkFormat;
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.eclipse.californium.core.coap.Response;
 import org.eclipse.californium.core.server.resources.Resource;
+import org.eclipse.californium.reverseproxy.interfacedraft.InterfaceServerMessageDeliverer;
 import org.eclipse.californium.reverseproxy.interfacedraft.resources.ReverseProxyResourceInterface;
 
 import java.net.InetSocketAddress;
@@ -15,13 +17,18 @@ import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Created by jacko on 16/05/16.
  */
 public class ExampleReverseProxyInterface extends ExampleReverseProxy {
+	
+	private final static Logger LOGGER = Logger.getLogger(ExampleReverseProxyInterface.class.getCanonicalName());
+	
     public ExampleReverseProxyInterface(String config, String ip) {
         super(config, ip);
+        this.setMessageDeliverer(new InterfaceServerMessageDeliverer(this.getRoot()));
     }
 
     /**
@@ -63,6 +70,7 @@ public class ExampleReverseProxyInterface extends ExampleReverseProxy {
             	}
             }
         }
+        LOGGER.info("Discovery done.");
     }
 
     private boolean containsURI(Set<WebLink> ret, WebLink l) {

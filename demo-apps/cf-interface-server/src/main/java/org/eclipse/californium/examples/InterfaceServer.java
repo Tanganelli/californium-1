@@ -121,7 +121,7 @@ public class InterfaceServer extends CoapServer {
                     LOGGER.info("Send Notification");
                     lock.lock();
                     try {
-                        newPeriod.await(notificationPeriod, TimeUnit.SECONDS);
+                        newPeriod.await(notificationPeriod, TimeUnit.MILLISECONDS);
                     } catch (InterruptedException e) {
                         LOGGER.info("Stop Thread");
                     } finally {
@@ -147,20 +147,22 @@ public class InterfaceServer extends CoapServer {
         @Override
         public void handlePUT(CoapExchange exchange){
             Request request = exchange.advanced().getRequest();
+            LOGGER.info("Received Request " + request);
             List<String> queries = request.getOptions().getUriQuery();
             if(!queries.isEmpty()){
-                int period = 0;
                 for(String composedquery : queries){
                     //handle queries values
                     String[] tmp = composedquery.split("=");
-                    if(tmp.length != 2) // not valid Pmin or Pmax
+                    if(tmp.length != 2) // not valid period
                         return;
                     String query = tmp[0];
                     String value = tmp[1];
                     if(query.equals("period")){
                         int seconds;
                         try{
-                            seconds = Integer.parseInt(value);
+                            Double period = (Double.parseDouble(value) * 1000);
+                            System.out.println("Period: " + period);
+                            seconds = period.intValue() ;
                             if(seconds <= 0) throw new NumberFormatException();
                             notificationPeriod = seconds;
                         } catch(NumberFormatException e){

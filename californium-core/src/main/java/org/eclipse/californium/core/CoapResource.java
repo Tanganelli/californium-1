@@ -48,6 +48,7 @@ import org.eclipse.californium.core.network.Exchange;
 import org.eclipse.californium.core.observe.ObserveNotificationOrderer;
 import org.eclipse.californium.core.observe.ObserveRelation;
 import org.eclipse.californium.core.observe.ObserveRelationContainer;
+import org.eclipse.californium.core.observe.ObserveRelationContainerImpl;
 import org.eclipse.californium.core.observe.ObserveRelationFilter;
 import org.eclipse.californium.core.server.ServerMessageDeliverer;
 import org.eclipse.californium.core.server.resources.CoapExchange;
@@ -166,6 +167,14 @@ public  class CoapResource implements Resource {
 	/* The the list of CoAP observe relations. */
 	private ObserveRelationContainer observeRelations;
 	
+	public ObserveRelationContainer getObserveRelations() {
+		return observeRelations;
+	}
+
+	public void setObserveRelations(ObserveRelationContainer observeRelations) {
+		this.observeRelations = observeRelations;
+	}
+
 	/* The notification orderer. */
 	private ObserveNotificationOrderer notificationOrderer;
 	
@@ -191,9 +200,9 @@ public  class CoapResource implements Resource {
 		this.visible = visible;
 		this.attributes = new ResourceAttributes();
 		this.children = new ConcurrentHashMap<String, Resource>();
-		this.observers = new CopyOnWriteArrayList<ResourceObserver>();
-		this.observeRelations = new ObserveRelationContainer();
-		this.notificationOrderer = new ObserveNotificationOrderer();
+		this.setObservers(new CopyOnWriteArrayList<ResourceObserver>());
+		this.observeRelations = new ObserveRelationContainerImpl();
+		this.setNotificationOrderer(new ObserveNotificationOrderer());
 	}
 	
 
@@ -294,14 +303,14 @@ public  class CoapResource implements Resource {
 		if (relation == null) return; // because request did not try to establish a relation
 		
 		if (CoAP.ResponseCode.isSuccess(response.getCode())) {
-			response.getOptions().setObserve(notificationOrderer.getCurrent());
+			response.getOptions().setObserve(getNotificationOrderer().getCurrent());
 			
 			if (!relation.isEstablished()) {
 				relation.setEstablished(true);
 				addObserveRelation(relation);
-			} else if (observeType != null) {
+			} else if (getObserveType() != null) {
 				// The resource can control the message type of the notification
-				response.setType(observeType);
+				response.setType(getObserveType());
 			}
 		} // ObserveLayer takes care of the else case
 	}
@@ -366,7 +375,7 @@ public  class CoapResource implements Resource {
 			child.getParent().delete(child);
 		children.put(child.getName(), child);
 		child.setParent(this);
-		for (ResourceObserver obs:observers)
+		for (ResourceObserver obs:getObservers())
 			obs.addedChild(child);
 	}
 	
@@ -438,7 +447,7 @@ public  class CoapResource implements Resource {
 		if (deleted == child) {
 			child.setParent(null);
 			child.setPath(null);
-			for (ResourceObserver obs : observers)
+			for (ResourceObserver obs : getObservers())
 				obs.removedChild(child);
 			return true;
 		}
@@ -535,7 +544,7 @@ public  class CoapResource implements Resource {
 	 */
 	@Override
 	public synchronized void addObserver(ResourceObserver observer) {
-		observers.add(observer);
+		getObservers().add(observer);
 	}
 
 	/* (non-Javadoc)
@@ -543,7 +552,7 @@ public  class CoapResource implements Resource {
 	 */
 	@Override
 	public synchronized void removeObserver(ResourceObserver observer) {
-		observers.remove(observer);
+		getObservers().remove(observer);
 	}
 
 	/* (non-Javadoc)
@@ -592,7 +601,7 @@ public  class CoapResource implements Resource {
 	public synchronized void setPath(String path) {
 		String old = this.path;
 		this.path = path;
-		for (ResourceObserver obs:observers)
+		for (ResourceObserver obs:getObservers())
 			obs.changedPath(old);
 		adjustChildrenPath();
 	}
@@ -619,7 +628,7 @@ public  class CoapResource implements Resource {
 		}
 		adjustChildrenPath();
 		
-		for (ResourceObserver obs:observers)
+		for (ResourceObserver obs:getObservers())
 			obs.changedName(old);
 	}
 	
@@ -690,7 +699,7 @@ public  class CoapResource implements Resource {
 		} else {
 			LOGGER.log(Level.INFO, "Successfully established observe relation between {0} and resource {1}", new Object[]{relation.getKey(), getURI()});
 		}
-		for (ResourceObserver obs:observers)
+		for (ResourceObserver obs:getObservers())
 			obs.addedObserveRelation(relation);
 	}
 
@@ -700,7 +709,7 @@ public  class CoapResource implements Resource {
 	@Override
 	public void removeObserveRelation(ObserveRelation relation) {
 		observeRelations.remove(relation);
-		for (ResourceObserver obs:observers)
+		for (ResourceObserver obs:getObservers())
 			obs.removedObserveRelation(relation);
 	}
 	
@@ -761,7 +770,7 @@ public  class CoapResource implements Resource {
 	 *               <code>null</code>, if all clients should be notified.
 	 */
 	protected void notifyObserverRelations(final ObserveRelationFilter filter) {
-		notificationOrderer.getNextObserveNumber();
+		getNotificationOrderer().getNextObserveNumber();
 		for (ObserveRelation relation:observeRelations) {
 			if (null == filter || filter.accept(relation)) relation.notifyObservers();
 		}
@@ -824,5 +833,25 @@ public  class CoapResource implements Resource {
 		if (parent == null)
 			return Collections.emptyList();
 		else return parent.getEndpoints();
+	}
+
+	public ObserveNotificationOrderer getNotificationOrderer() {
+		return notificationOrderer;
+	}
+
+	public void setNotificationOrderer(ObserveNotificationOrderer notificationOrderer) {
+		this.notificationOrderer = notificationOrderer;
+	}
+
+	public Type getObserveType() {
+		return observeType;
+	}
+
+	public List<ResourceObserver> getObservers() {
+		return observers;
+	}
+
+	public void setObservers(List<ResourceObserver> observers) {
+		this.observers = observers;
 	}
 }

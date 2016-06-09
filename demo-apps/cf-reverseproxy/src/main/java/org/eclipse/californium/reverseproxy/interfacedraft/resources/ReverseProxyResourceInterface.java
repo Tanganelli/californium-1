@@ -1,22 +1,14 @@
 package org.eclipse.californium.reverseproxy.interfacedraft.resources;
 
-import org.eclipse.californium.core.CoapClient;
-import org.eclipse.californium.core.CoapObserveRelation;
-import org.eclipse.californium.core.coap.CoAP;
-import org.eclipse.californium.core.coap.OptionSet;
-import org.eclipse.californium.core.coap.Request;
-import org.eclipse.californium.core.coap.Response;
-import org.eclipse.californium.core.network.config.NetworkConfig;
-import org.eclipse.californium.core.observe.ObserveRelation;
-import org.eclipse.californium.core.server.resources.CoapExchange;
-import org.eclipse.californium.core.server.resources.ResourceAttributes;
-import org.eclipse.californium.examples.ExampleReverseProxy;
-import org.eclipse.californium.reverseproxy.interfacedraft.*;
-import org.eclipse.californium.reverseproxy.resources.ClientEndpoint;
-import org.eclipse.californium.reverseproxy.resources.ReverseProxyResource;
-
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -25,37 +17,35 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapObserveRelation;
+import org.eclipse.californium.core.coap.CoAP;
+import org.eclipse.californium.core.coap.OptionSet;
+import org.eclipse.californium.core.coap.Request;
+import org.eclipse.californium.core.coap.Response;
+import org.eclipse.californium.core.network.Exchange;
+import org.eclipse.californium.core.network.config.NetworkConfig;
+import org.eclipse.californium.core.observe.ObserveRelation;
+import org.eclipse.californium.core.server.ServerMessageDeliverer;
+import org.eclipse.californium.core.server.resources.CoapExchange;
+import org.eclipse.californium.core.server.resources.ResourceAttributes;
+import org.eclipse.californium.core.server.resources.ResourceObserver;
+import org.eclipse.californium.examples.ExampleReverseProxy;
+import org.eclipse.californium.reverseproxy.interfacedraft.Interface;
+import org.eclipse.californium.reverseproxy.interfacedraft.InterfaceRequest;
+import org.eclipse.californium.reverseproxy.interfacedraft.ScheduleResult;
+import org.eclipse.californium.reverseproxy.interfacedraft.Scheduler;
+import org.eclipse.californium.reverseproxy.interfacedraft.Task;
+import org.eclipse.californium.reverseproxy.resources.ClientEndpoint;
+import org.eclipse.californium.reverseproxy.resources.ReverseProxyResource;
+
 public class ReverseProxyResourceInterface extends ReverseProxyResource {
     /** The factor that multiplied for the actual RTT
      * is used as the timeout for waiting replies from the end device.*/
     private static long WAIT_FACTOR = 10;
 
-    public InterfaceObserveRelationContainer getObserveRelations() {
-        return observeRelations;
-    }
-
-    /* The the list of CoAP observe relations. */
-    private InterfaceObserveRelationContainer observeRelations;
-
-    public double getNotificationPeriod() {
-        return notificationPeriod;
-    }
-
-    public CoapObserveRelation getRelation() {
-        return relation;
-    }
-
     private double notificationPeriod;
-
-    public void setRtt(long rtt) {
-        this.rtt = rtt;
-    }
-
     private long rtt;
-
-    public long getLastValidRtt() {
-        return lastValidRtt;
-    }
 
     private long lastValidRtt;
     private final Map<ClientEndpoint, InterfaceRequest> subscriberList;
@@ -72,11 +62,14 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
     Condition newNotification;
     private final ScheduledExecutorService notificationExecutor;
     private final Scheduler scheduler;
+    
+    /* The the list of CoAP observe relations. */
+    private InterfaceObserveRelationContainer observeRelations;
 
     public ReverseProxyResourceInterface(String name, URI uri, ResourceAttributes resourceAttributes, NetworkConfig networkConfig, ExampleReverseProxy reverseProxy) {
         super(name, uri, resourceAttributes, networkConfig, reverseProxy);
         this.rtt = 500;
-        subscriberList = new HashMap<ClientEndpoint, InterfaceRequest>();
+        subscriberList = Collections.synchronizedMap(new HashMap<ClientEndpoint, InterfaceRequest>()); 
         this.addObserver(new ReverseProxyResourceObserver(this));
         notificationPeriod = 0;
         relation = null;
@@ -95,8 +88,30 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         rttTask = new RttTask(this);
 
         scheduler = new Scheduler();
+        
+        observeRelations = new InterfaceObserveRelationContainer();
+        this.setObserveRelations(observeRelations);
+    }
+    
+    public InterfaceObserveRelationContainer getObserveRelations() {
+        return observeRelations;
     }
 
+    public double getNotificationPeriod() {
+        return notificationPeriod;
+    }
+
+    public CoapObserveRelation getRelation() {
+        return relation;
+    }
+
+    public void setRtt(long rtt) {
+        this.rtt = rtt;
+    }
+
+    public long getLastValidRtt() {
+        return lastValidRtt;
+    }
     /**
      * Forward incoming request to the end device.
      *
@@ -184,12 +199,13 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      * @param exchange the exchange that own the incoming request
      * @return the ResponseCode to used in the reply to the client
      */
-    private int handlePUTCoRE(CoapExchange exchange) {
+    private  int handlePUTCoRE(CoapExchange exchange) {
         LOGGER.log(Level.INFO, "handlePUTCoRE(" + exchange + ")");
         Request request = exchange.advanced().getCurrentRequest();
         List<String> queries = request.getOptions().getUriQuery();
         ClientEndpoint clientEndpoint = new ClientEndpoint(request.getSource(), request.getSourcePort());
-        InterfaceRequest interface_request = getSubscriberCopy(clientEndpoint);
+        
+        InterfaceRequest interface_request = subscriberList.get(clientEndpoint);
         if(interface_request  == null)
             interface_request = new InterfaceRequest();
         double pmin = -1;
@@ -228,7 +244,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             interface_request.setAllowed(false);
             interface_request.setPmax(pmax);
             interface_request.setPmin(pmin);
-            addSubscriber(clientEndpoint, interface_request);
+            subscriberList.put(clientEndpoint, interface_request);
         }
         return 0;
     }
@@ -251,36 +267,47 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         {
             //Observe Request
             //exchange.advanced().sendAccept();
+        	//setRtt(evaluateRtt());
             int ret = handleGETCoRE(exchange);
             if(ret == 0){
                 // create Observe request for the first client
-                if(observeEnabled.compareAndSet(false, true)){
-                    relation = client.observe(new ReverseProxyCoAPHandler(this));
+                if(relation == null || relation.getCurrent() == null || relation.isCanceled()){
+                    relation = client.observeAndWait(new ReverseProxyCoAPHandler(this));
                     Response responseForClients = getLast(request);
                     Date now = new Date();
                     long timestamp = now.getTime();
-                    updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
+                    responseForClients.setTimestamp(timestamp);
+                    
+                    //updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
                     exchange.respond(responseForClients);
-                    LOGGER.info("Start Notification Task");
-                    notificationExecutor.submit(notificationTask);
+                    //LOGGER.info("Start Notification Task");
+                    //notificationExecutor.submit(notificationTask);
+                    
                     rttExecutor.submit(rttTask);
                 }else{
                     //reply to client
+                	Response responseForClients = getLast(request);
                     Date now = new Date();
                     long timestamp = now.getTime();
-                    ClientEndpoint clientEndpoint = new ClientEndpoint(request.getSource(), request.getSourcePort());
-                    InterfaceRequest interface_request = getSubscriberCopy(clientEndpoint);
-                    long elapsed = timestamp - interface_request.getTimestampLastNotificationSent();
-                    if(interface_request.getPmin() <= elapsed || interface_request.getTimestampLastNotificationSent() == -1)
-                    {
-                        Response responseForClients = getLast(request);
+                    responseForClients.setTimestamp(timestamp);
+                    //updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
+                    exchange.respond(responseForClients);
+                    
+                    //Date now = new Date();
+                    //long timestamp = now.getTime();
+                    //ClientEndpoint clientEndpoint = new ClientEndpoint(request.getSource(), request.getSourcePort());
+                    //InterfaceRequest interface_request = getSubscriberCopy(clientEndpoint);
+                    //long elapsed = timestamp - interface_request.getTimestampLastNotificationSent();
+                    //if(interface_request.getPmin() <= elapsed || interface_request.getTimestampLastNotificationSent() == -1)
+                    //{
+                        //Response responseForClients = getLast(request);
                         //save lastNotification for the client
-                        updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
-                        exchange.respond(responseForClients);
-                        lock.lock();
+                        //updateSubscriberNotification(new ClientEndpoint(request.getSource(), request.getSourcePort()), timestamp, relation.getCurrent().advanced());
+                        //exchange.respond(responseForClients);
+                        /*lock.lock();
                         newNotification.signalAll();
-                        lock.unlock();
-                    }
+                        lock.unlock();*/
+                    //}
 
                 }
             }
@@ -310,28 +337,15 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         }
     }
 
-    public synchronized Map<ClientEndpoint, InterfaceRequest> getSubscriberListCopy() {
-        LOGGER.log(Level.FINER, "getSubscriberList()");
-        return this.subscriberList;
-    }
+//    public Map<ClientEndpoint, InterfaceRequest> getSubscriberListCopy() {
+//        LOGGER.log(Level.FINER, "getSubscriberList()");
+//        return this.subscriberList;
+//    }
 
-    private synchronized void updateSubscriberNotification(ClientEndpoint clientEndpoint,
-                                                           long timestamp, Response response) {
-        LOGGER.log(Level.FINER, "updateSubscriberNotification(" + clientEndpoint+ ", "+ timestamp+", "+response+")");
-        if(this.subscriberList.containsKey(clientEndpoint)){
-            this.subscriberList.get(clientEndpoint).setTimestampLastNotificationSent(timestamp);
-            this.subscriberList.get(clientEndpoint).setLastNotificationSent(response);
-        }
-    }
-
-    private synchronized InterfaceRequest getSubscriberCopy(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.INFO, "getSubscriberCopy(" + clientEndpoint + ")");
-        return this.subscriberList.get(clientEndpoint);
-    }
-
-    private synchronized void addSubscriber(ClientEndpoint clientEndpoint, InterfaceRequest pr) {
-        LOGGER.log(Level.FINER, "addSubscriber(" + clientEndpoint+ ", "+ pr +")");
-        this.subscriberList.put(clientEndpoint, pr);
+    public Parameters getParameters(ClientEndpoint clientEndpoint) {
+        LOGGER.log(Level.INFO, "getParameters(" + clientEndpoint + ")");
+        return new Parameters(subscriberList.get(clientEndpoint).getPmin(), subscriberList.get(clientEndpoint).getPmax(),
+        		subscriberList.get(clientEndpoint).isAllowed());
     }
 
     /**
@@ -344,40 +358,43 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         LOGGER.log(Level.FINER, "handleGETCoRE(" + exchange + ")");
         Request request = exchange.advanced().getCurrentRequest();
         ClientEndpoint clientEndpoint = new ClientEndpoint(request.getSource(), request.getSourcePort());
-        InterfaceRequest interface_request = getSubscriberCopy(clientEndpoint);
-        if(interface_request == null)
-            interface_request = new InterfaceRequest();
+        synchronized(subscriberList){
+        	InterfaceRequest interface_request = subscriberList.get(clientEndpoint);
+            if(interface_request == null)
+                interface_request = new InterfaceRequest();
 
-        // Both parameters have been set
-        if(interface_request.getPmin() != -1 && interface_request.getPmax() != -1){
-            if(interface_request.isAllowed() || scheduleNewRequest(interface_request)){
-                interface_request.setExchange(exchange);
-                interface_request.setOriginRequest(request);
-                addSubscriber(clientEndpoint, interface_request);
-                return 0;
-            } else{
-                // Scheduling is not feasible
-                removeSubscriber(clientEndpoint);
-                // 1 = CoAP.ResponseCode.NOT_ACCEPTABLE
-                return 1;
+            // Both parameters have been set
+            if(interface_request.getPmin() != -1 && interface_request.getPmax() != -1){
+                if(interface_request.isAllowed() || scheduleNewRequest(interface_request)){
+                    interface_request.setExchange(exchange);
+                    interface_request.setOriginRequest(request);
+                    subscriberList.put(clientEndpoint, interface_request);
+                    return 0;
+                } else{
+                    // Scheduling is not feasible
+                	subscriberList.remove(clientEndpoint);
+                    // 1 = CoAP.ResponseCode.NOT_ACCEPTABLE
+                    return 1;
+                }
+            }
+            else{
+                //No parameter has been set
+    			/* TODO Decide what to do in the case of an observing relationship where the client didn't set any parameter
+    			 * Now we stop it and reply with an error.
+    			 */
+            	subscriberList.remove(clientEndpoint);
+                // 2 = CoAP.ResponseCode.FORBIDDEN
+                return 2;
             }
         }
-        else{
-            //No parameter has been set
-			/* TODO Decide what to do in the case of an observing relationship where the client didn't set any parameter
-			 * Now we stop it and reply with an error.
-			 */
-            removeSubscriber(clientEndpoint);
-            // 2 = CoAP.ResponseCode.FORBIDDEN
-            return 2;
-        }
+        
     }
 
     /**
      * Verify if the new request can be accepted.
      *
      */
-    private boolean scheduleNewRequest(InterfaceRequest params) {
+    private  boolean scheduleNewRequest(InterfaceRequest params) {
         LOGGER.log(Level.INFO, "scheduleNewRequest(" + params + ")");
         if(this.rtt == -1) this.rtt = evaluateRtt();
         if(params.getPmin() < this.rtt) return false;
@@ -438,7 +455,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
 
     private Response getLast(Request request) {
         LOGGER.log(Level.INFO, "getLast(" + request + ")");
-        lock.lock();
+        /*lock.lock();
         try {
             while(relation == null || relation.getCurrent() == null)
                 newNotification.await();
@@ -446,7 +463,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             e.printStackTrace();
         } finally{
             lock.unlock();
-        }
+        }*/
         Response notification = relation.getCurrent().advanced();
 
         // accept without create a new observing relationship
@@ -468,12 +485,12 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
     /**
      * Produce a scheduler schema only for feasible requests.
      */
-    protected void scheduleFeasibles() {
+    protected  void scheduleFeasibles() {
         LOGGER.log(Level.INFO, "scheduleFeasibles()");
         boolean end = false;
         while(!end) // delete the most demanding client
         {
-            dumpSubscribers();
+            //dumpSubscribers();
             ScheduleResult ret = schedule();
             end = ret.isValid();
             if(!end){
@@ -504,22 +521,27 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         LOGGER.log(Level.FINER, "minPmaxClient()");
         double minPmax = Integer.MAX_VALUE;
         ClientEndpoint ret = null;
-        Map<ClientEndpoint, InterfaceRequest> tmp = getSubscriberListCopy();
-        for(Map.Entry<ClientEndpoint, InterfaceRequest> entry : tmp.entrySet()){
-            if(entry.getValue().getPmax() < minPmax){
-                minPmax = entry.getValue().getPmax();
-                ret = entry.getKey();
+        Set<ClientEndpoint> set = subscriberList.keySet();
+        synchronized(this.subscriberList){
+        	Iterator<ClientEndpoint> iterator = set.iterator(); 
+            while (iterator.hasNext()){
+            	ClientEndpoint ce = iterator.next();
+            	InterfaceRequest request = subscriberList.get(ce);
+	            if(request.getPmax() < minPmax){
+	                minPmax = request.getPmax();
+	                ret = ce;
             }
+        }
         }
         return ret;
     }
 
-    private void deleteSubscriptionFromProxy(ClientEndpoint client) {
+    private  void deleteSubscriptionFromProxy(ClientEndpoint client) {
         LOGGER.log(Level.INFO, "deleteSubscriptionFromProxy(" + client + ")");
-        InterfaceRequest invalid = getSubscriberCopy(client);
+        InterfaceRequest invalid = subscriberList.get(client);
 		/*invalid.setAllowed(false);
 		addInvalidSubscriber(client, invalid);*/
-        removeSubscriber(client);
+        subscriberList.remove(client);
         Response response = getLast(invalid.getOriginRequest());
         response.getOptions().removeObserve();
         ObserveRelation rel = invalid.getExchange().advanced().getRelation();
@@ -528,13 +550,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         rel.cancel();
     }
 
-    private synchronized void removeSubscriber(ClientEndpoint clientEndpoint) {
-        LOGGER.log(Level.INFO, "removeSubscriber(" + clientEndpoint + ")");
-        this.subscriberList.remove(clientEndpoint);
-        dumpSubscribers();
-    }
-
-    private boolean updatePeriods(ScheduleResult ret) {
+    private  boolean updatePeriods(ScheduleResult ret) {
         LOGGER.log(Level.INFO, "updatePeriods(" + ret + ")");
         double period = ret.getPeriod();
         this.lastValidRtt = ret.getLastRtt();
@@ -552,12 +568,12 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      * Use the pmin and pmax computed by the scheduler.
      *
      */
-    private void setObservingQoS() {
+    private  void setObservingQoS() {
         LOGGER.log(Level.INFO, "setObserving()");
         double period = (this.notificationPeriod) / 1000; // convert to second
         String uri = this.getURI()+"?period="+ period;
         Request request = new Request(CoAP.Code.PUT, CoAP.Type.CON);
-        request.setURI(uri);
+        request.setURI("coap:/" + uri);
         request.send(getReverseProxy().getUnicastEndpoint());
         LOGGER.info("setObservingQos - " + request);
         Response response;
@@ -598,7 +614,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      *
      * @return true if success, false otherwise.
      */
-    private synchronized ScheduleResult schedule(){
+    private ScheduleResult schedule(){
         LOGGER.log(Level.FINER, "schedule()");
         long rtt = this.rtt;
         LOGGER.info("schedule() - Rtt: " + this.rtt);
@@ -608,39 +624,35 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         }
         List<Task> tasks = new ArrayList<Task>();
         //TODO remove
-        dumpSubscribers();
-        for(ClientEndpoint ce : this.subscriberList.keySet()){
-            Task tmp = new Task(ce);
-            InterfaceRequest old = this.subscriberList.get(ce);
-            tmp.setPmin(old.getPmin());
-            tmp.setPmax(old.getPmax());
-            tmp.setAllowed(old.isAllowed());
-            tmp.setExchange(old.getExchange());
-            tmp.setLastNotificationSent(old.getLastNotificationSent());
-            tmp.setOriginRequest(old.getOriginRequest());
-            tmp.setTimestampLastNotificationSent(old.getTimestampLastNotificationSent());
-            tasks.add(tmp);
-        }
-
-        //TODO add max-age
-        double period = scheduler.schedule(tasks, rtt, 60);
-
-
-        if(period > rtt){
-            for(Task t : tasks){
-                this.subscriberList.get(t.getClient()).setAllowed(true);
+        //dumpSubscribers();
+        Set<ClientEndpoint> set = subscriberList.keySet();
+        synchronized(this.subscriberList){
+        	Iterator<ClientEndpoint> iterator = set.iterator(); 
+            while (iterator.hasNext()){
+            	ClientEndpoint ce = iterator.next();
+	            Task tmp = new Task(ce);
+	            InterfaceRequest old = this.subscriberList.get(ce);
+	            tmp.setPmin(old.getPmin());
+	            tmp.setPmax(old.getPmax());
+	            tmp.setAllowed(old.isAllowed());
+	            tmp.setExchange(old.getExchange());
+	            tmp.setLastNotificationSent(old.getLastNotificationSent());
+	            tmp.setOriginRequest(old.getOriginRequest());
+	            tmp.setTimestampLastNotificationSent(old.getTimestampLastNotificationSent());
+	            tasks.add(tmp);
             }
-            return new ScheduleResult(period, rtt, true);
+	        //TODO add max-age
+	        double period = scheduler.schedule(tasks, rtt);
+	
+	
+	        if(period > rtt){
+	            for(Task t : tasks){
+	                this.subscriberList.get(t.getClient()).setAllowed(true);
+	            }
+	            return new ScheduleResult(period, rtt, true);
+	        }
+	        return new ScheduleResult(period, rtt, false);
         }
-        return new ScheduleResult(period, rtt, false);
-    }
-
-    private void dumpSubscribers() {
-        LOGGER.log(Level.INFO, "dumpSubscribers()");
-        for(Map.Entry<ClientEndpoint, InterfaceRequest> entry : this.subscriberList.entrySet()){
-            LOGGER.info(entry.getKey().toString() + " " + entry.getValue().toString());
-        }
-
     }
 
     /**
@@ -648,18 +660,18 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
      *
      * @param clientEndpoint the Periodic Observing request that must be deleted
      */
-    public void deleteSubscriptionsFromClients(ClientEndpoint clientEndpoint) {
+    public  void deleteSubscriptionsFromClients(ClientEndpoint clientEndpoint) {
         LOGGER.log(Level.INFO, "deleteSubscriptionsFromClients(" + clientEndpoint + ")");
         if(clientEndpoint != null){
-            removeSubscriber(clientEndpoint);
+        	subscriberList.remove(clientEndpoint);
 
-            if(getSubscriberListCopy().isEmpty()){
+            if(subscriberList.isEmpty()){
                 LOGGER.log(Level.INFO, "SubscriberList Empty");
-                observeEnabled.set(false);
-                lock.lock();
+                //observeEnabled.set(false);
+                /*lock.lock();
                 newNotification.signalAll();
-                lock.unlock();
-                relation.proactiveCancel();
+                lock.unlock();*/
+                relation.reactiveCancel();
             } else{
                 scheduleFeasibles();
             }
@@ -673,7 +685,65 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         // Update also Max Age to consider Server RTT
         LOGGER.info("MAX-AGE " + relation.getCurrent().advanced().getOptions().getMaxAge().toString());
         LOGGER.info("RTT " + rtt);
-        relation.getCurrent().advanced().getOptions().setMaxAge(relation.getCurrent().advanced().getOptions().getMaxAge() - (rtt / 1000));
+        //relation.getCurrent().advanced().getOptions().setMaxAge(relation.getCurrent().advanced().getOptions().getMaxAge() - (rtt / 1000));
     }
 
+    
+    /**
+	 * This method is used to apply resource-specific knowledge on the exchange.
+	 * If the request was successful, it sets the Observe option for the
+	 * response. It is important to use the notificationOrderer of the resource
+	 * here. Further down the layer, race conditions could cause local
+	 * reordering of notifications. If the response has an error code, no
+	 * observe relation can be established and if there was one previously it is
+	 * canceled. When this resource allows to be observed by clients and the
+	 * request is a GET request with an observe option, the
+	 * {@link ServerMessageDeliverer} already created the relation, as it
+	 * manages the observing endpoints globally.
+	 * 
+	 * @param exchange the exchange
+	 * @param response the response
+	 */
+    @Override
+	public void checkObserveRelation(Exchange exchange, Response response) {
+		/*
+		 * If the request for the specified exchange tries to establish an observer
+		 * relation, then the ServerMessageDeliverer must have created such a relation
+		 * and added to the exchange. Otherwise, there is no such relation.
+		 * Remember that different paths might lead to this resource.
+		 */
+		
+		InterfaceObserveRelation relation = (InterfaceObserveRelation) exchange.getRelation();
+		if (relation == null) return; // because request did not try to establish a relation
+		if (CoAP.ResponseCode.isSuccess(response.getCode())) {
+			
+			response.getOptions().setObserve(getNotificationOrderer().getCurrent());
+			
+			
+			if (!relation.isEstablished()) {
+				relation.setEstablished(true);
+				addObserveRelation(relation);
+				relation.setLastTimestamp(response.getTimestamp());
+			} else if (getObserveType() != null) {
+				// The resource can control the message type of the notification
+				response.setType(getObserveType());
+			}
+		} // ObserveLayer takes care of the else case
+	}
+    
+    /* (non-Javadoc)
+	 * @see org.eclipse.californium.core.server.resources.Resource#addObserveRelation(org.eclipse.californium.core.observe.ObserveRelation)
+	 */
+	@Override
+	public void addObserveRelation(ObserveRelation relation) {
+		InterfaceObserveRelation interface_relation = (InterfaceObserveRelation) relation;
+		interface_relation.setAllowed(true);
+		if (observeRelations.add(relation)) {
+			LOGGER.log(Level.INFO, "Replacing observe relation between {0} and resource {1}", new Object[]{relation.getKey(), getURI()});
+		} else {
+			LOGGER.log(Level.INFO, "Successfully established observe relation between {0} and resource {1}", new Object[]{relation.getKey(), getURI()});
+		}
+		for (ResourceObserver obs:getObservers())
+			obs.addedObserveRelation(relation);
+	}
 }

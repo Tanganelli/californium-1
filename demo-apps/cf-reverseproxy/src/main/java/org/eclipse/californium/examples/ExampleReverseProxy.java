@@ -72,7 +72,8 @@ public class ExampleReverseProxy extends CoapServer {
         LOGGER.info("Starting ReverseProxy");
         super.start();
         try{
-            discoverHandle = discoverScheduler.scheduleAtFixedRate(this.discoverThreadIPv4, 10, 10, TimeUnit.SECONDS);
+            //discoverHandle = discoverScheduler.scheduleAtFixedRate(this.discoverThreadIPv4, 10, 10, TimeUnit.SECONDS);
+        	discoverHandle = discoverScheduler.schedule(this.discoverThreadIPv4, 10, TimeUnit.SECONDS);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

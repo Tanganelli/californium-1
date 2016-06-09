@@ -1,6 +1,5 @@
 package org.eclipse.californium.reverseproxy.interfacedraft;
 
-import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
 import org.eclipse.californium.core.server.resources.CoapExchange;
@@ -22,6 +21,16 @@ public class InterfaceRequest{
 
     public InterfaceRequest() {
         lastTimestampNotificationSent = -1;
+    }
+    
+    public InterfaceRequest(InterfaceRequest req) {
+        pmin = req.pmin;
+        pmax = req.pmax;
+        allowed = req.allowed;
+        lastTimestampNotificationSent = req.lastTimestampNotificationSent;
+        exchange = req.exchange;
+        originRequest = req.originRequest;
+        lastNotificationSent = req.lastNotificationSent;
     }
 
     public CoapExchange getExchange() {

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 public class RttTask implements Runnable {
 
 
-    private static final long PERIOD_RTT = 10000; // 10 sec
+    private static final long PERIOD_RTT = 50000; // 10 sec
     private static final long THRESHOLD = 500; // 500 ms as threshold
 
     //private static final int RENEW_COUNTER = 10;

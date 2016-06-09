@@ -66,6 +66,9 @@ public class ObserveNotificationOrderer {
 	public int getCurrent() {
 		return number.get();
 	}
+	public void setCurrent(int number){
+		this.number.set(number);
+	}
 	
 	/**
 	 * Returns the current timeout.

@@ -137,7 +137,7 @@
 
 	<modules>
 		<module>element-connector</module>
-		<module>scandium-core</module>
+		<!-- <module>scandium-core</module>-->
 		<module>californium-core</module>
 		<module>californium-proxy</module>
 		<module>californium-osgi</module>

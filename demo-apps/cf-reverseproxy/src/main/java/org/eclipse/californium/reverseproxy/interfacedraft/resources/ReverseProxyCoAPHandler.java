@@ -11,28 +11,32 @@ import org.eclipse.californium.reverseproxy.resources.ReverseProxyResource;
  */
 public class ReverseProxyCoAPHandler implements CoapHandler{
 
-    private ReverseProxyResourceInterface ownerResource;
+    private ReverseProxyResourceInterface interface_resource;
     private int count = 0;
     /** The logger. */
     protected final static Logger LOGGER = Logger.getLogger(ReverseProxyResource.class.getCanonicalName());
 
     public ReverseProxyCoAPHandler(ReverseProxyResourceInterface ownerResource){
-        this.ownerResource = ownerResource;
+        this.interface_resource = ownerResource;
     }
 
     @Override
     public void onLoad(CoapResponse coapResponse) {
-        LOGGER.info("new incoming notification");
-        ownerResource.getRelation().getOrderer().getNextObserveNumber();
+        if(coapResponse.getOptions().hasObserve()){
+	        int observe_number = coapResponse.getOptions().getObserve();
+	        interface_resource.getNotificationOrderer().setCurrent(observe_number);
+        }
         //if(count==10)
         //	ownerResource.emulatedDelay = 11000;
         count++;
+        LOGGER.info("new incoming notification: "+ count);
         Date now = new Date();
         long timestamp = now.getTime();
-        ownerResource.setTimestamp(timestamp);
-        ownerResource.lock.lock();
-        ownerResource.newNotification.signalAll();
-        ownerResource.lock.unlock();
+        interface_resource.setTimestamp(timestamp);
+        InterfaceObserveRelationFilter filter = new InterfaceObserveRelationFilter(interface_resource);
+
+        this.interface_resource.changed(filter);
+
     }
 
     @Override

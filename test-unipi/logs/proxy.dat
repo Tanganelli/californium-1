@@ -1,0 +1,1848 @@
+[Client (14470, 22200)
+Now: 1465465631097
+Delay: 5293
+Last Timestamp: 1465465631094
+Next Interval: 1465465636390
+Threshold: 77
+Deadline: 1465465653371
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465636390
+Delay: 5293
+Last Timestamp: 1465465631094
+Next Interval: 1465465641683
+Threshold: 77
+Deadline: 1465465653371
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465636392
+Delay: 5293
+Last Timestamp: 1465465631122
+Next Interval: 1465465641685
+Threshold: 38
+Deadline: 1465465655240
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465636393
+Delay: 5293
+Last Timestamp: 1465465631113
+Next Interval: 1465465641686
+Threshold: 200
+Deadline: 1465465659783
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465636395
+Delay: 5293
+Last Timestamp: 1465465631107
+Next Interval: 1465465641688
+Threshold: 54
+Deadline: 1465465639371
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465636401
+Delay: 5293
+Last Timestamp: 1465465631103
+Next Interval: 1465465641694
+Threshold: 199
+Deadline: 1465465657032
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465636402
+Delay: 5293
+Last Timestamp: 1465465631153
+Next Interval: 1465465641695
+Threshold: 16
+Deadline: 1465465647049
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465636403
+Delay: 5293
+Last Timestamp: 1465465631163
+Next Interval: 1465465641696
+Threshold: 59
+Deadline: 1465465642542
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465636404
+Delay: 5293
+Last Timestamp: 1465465631110
+Next Interval: 1465465641697
+Threshold: 67
+Deadline: 1465465646047
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465636405
+Delay: 5293
+Last Timestamp: 1465465631108
+Next Interval: 1465465641698
+Threshold: 57
+Deadline: 1465465644985
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465636406
+Delay: 5293
+Last Timestamp: 1465465631158
+Next Interval: 1465465641699
+Threshold: 144
+Deadline: 1465465648462
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465641683
+Delay: 5293
+Last Timestamp: 1465465631094
+Next Interval: 1465465646976
+Threshold: 77
+Deadline: 1465465653371
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465641684
+Delay: 5293
+Last Timestamp: 1465465631122
+Next Interval: 1465465646977
+Threshold: 38
+Deadline: 1465465655240
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465641685
+Delay: 5293
+Last Timestamp: 1465465631113
+Next Interval: 1465465646978
+Threshold: 200
+Deadline: 1465465659783
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465641686
+Delay: 5293
+Last Timestamp: 1465465636395
+Next Interval: 1465465646979
+Threshold: 54
+Deadline: 1465465644659
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465641689
+Delay: 5293
+Last Timestamp: 1465465631103
+Next Interval: 1465465646982
+Threshold: 199
+Deadline: 1465465657032
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465641690
+Delay: 5293
+Last Timestamp: 1465465631153
+Next Interval: 1465465646983
+Threshold: 16
+Deadline: 1465465647049
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465641690
+Delay: 5293
+Last Timestamp: 1465465631163
+Next Interval: 1465465646983
+Threshold: 59
+Deadline: 1465465642542
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465641692
+Delay: 5293
+Last Timestamp: 1465465631110
+Next Interval: 1465465646985
+Threshold: 67
+Deadline: 1465465646047
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465641694
+Delay: 5293
+Last Timestamp: 1465465631108
+Next Interval: 1465465646987
+Threshold: 57
+Deadline: 1465465644985
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465641696
+Delay: 5293
+Last Timestamp: 1465465631158
+Next Interval: 1465465646989
+Threshold: 144
+Deadline: 1465465648462
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465646977
+Delay: 5293
+Last Timestamp: 1465465631094
+Next Interval: 1465465652270
+Threshold: 77
+Deadline: 1465465653371
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465646978
+Delay: 5293
+Last Timestamp: 1465465631122
+Next Interval: 1465465652271
+Threshold: 38
+Deadline: 1465465655240
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465646978
+Delay: 5293
+Last Timestamp: 1465465631113
+Next Interval: 1465465652271
+Threshold: 200
+Deadline: 1465465659783
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465646978
+Delay: 5293
+Last Timestamp: 1465465641686
+Next Interval: 1465465652271
+Threshold: 54
+Deadline: 1465465649950
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465646979
+Delay: 5293
+Last Timestamp: 1465465631103
+Next Interval: 1465465652272
+Threshold: 199
+Deadline: 1465465657032
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465646980
+Delay: 5293
+Last Timestamp: 1465465631153
+Next Interval: 1465465652273
+Threshold: 16
+Deadline: 1465465647049
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465646981
+Delay: 5293
+Last Timestamp: 1465465641690
+Next Interval: 1465465652274
+Threshold: 59
+Deadline: 1465465653069
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465646981
+Delay: 5293
+Last Timestamp: 1465465641692
+Next Interval: 1465465652274
+Threshold: 67
+Deadline: 1465465656629
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465646981
+Delay: 5293
+Last Timestamp: 1465465641694
+Next Interval: 1465465652274
+Threshold: 57
+Deadline: 1465465655571
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465646982
+Delay: 5293
+Last Timestamp: 1465465631158
+Next Interval: 1465465652275
+Threshold: 144
+Deadline: 1465465648462
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465652272
+Delay: 5293
+Last Timestamp: 1465465631094
+Next Interval: 1465465657565
+Threshold: 77
+Deadline: 1465465653371
+Send Notification]
+[Client (20240, 24080)
+Now: 1465465652274
+Delay: 5293
+Last Timestamp: 1465465631122
+Next Interval: 1465465657567
+Threshold: 38
+Deadline: 1465465655240
+Send Notification]
+[Client (8410, 28470)
+Now: 1465465652277
+Delay: 5293
+Last Timestamp: 1465465631113
+Next Interval: 1465465657570
+Threshold: 200
+Deadline: 1465465659783
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465652277
+Delay: 5293
+Last Timestamp: 1465465646978
+Next Interval: 1465465657570
+Threshold: 54
+Deadline: 1465465655242
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465652280
+Delay: 5293
+Last Timestamp: 1465465631103
+Next Interval: 1465465657573
+Threshold: 199
+Deadline: 1465465657032
+Send Notification]
+[Client (14260, 15880)
+Now: 1465465652282
+Delay: 5293
+Last Timestamp: 1465465646980
+Next Interval: 1465465657575
+Threshold: 16
+Deadline: 1465465662876
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465652283
+Delay: 5293
+Last Timestamp: 1465465641690
+Next Interval: 1465465657576
+Threshold: 59
+Deadline: 1465465653069
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465652285
+Delay: 5293
+Last Timestamp: 1465465641692
+Next Interval: 1465465657578
+Threshold: 67
+Deadline: 1465465656629
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465652288
+Delay: 5293
+Last Timestamp: 1465465641694
+Next Interval: 1465465657581
+Threshold: 57
+Deadline: 1465465655571
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465652289
+Delay: 5293
+Last Timestamp: 1465465646982
+Next Interval: 1465465657582
+Threshold: 144
+Deadline: 1465465664286
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465657566
+Delay: 5293
+Last Timestamp: 1465465652272
+Next Interval: 1465465662859
+Threshold: 77
+Deadline: 1465465674549
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465657567
+Delay: 5293
+Last Timestamp: 1465465652274
+Next Interval: 1465465662860
+Threshold: 38
+Deadline: 1465465676392
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465657567
+Delay: 5293
+Last Timestamp: 1465465631113
+Next Interval: 1465465662860
+Threshold: 200
+Deadline: 1465465659783
+Send Notification]
+[Client (2810, 8210)
+Now: 1465465657569
+Delay: 5293
+Last Timestamp: 1465465652277
+Next Interval: 1465465662862
+Threshold: 54
+Deadline: 1465465660541
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465657570
+Delay: 5293
+Last Timestamp: 1465465652280
+Next Interval: 1465465662863
+Threshold: 199
+Deadline: 1465465678209
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465657571
+Delay: 5293
+Last Timestamp: 1465465646980
+Next Interval: 1465465662864
+Threshold: 16
+Deadline: 1465465662876
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465657571
+Delay: 5293
+Last Timestamp: 1465465652283
+Next Interval: 1465465662864
+Threshold: 59
+Deadline: 1465465663662
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465657572
+Delay: 5293
+Last Timestamp: 1465465652285
+Next Interval: 1465465662865
+Threshold: 67
+Deadline: 1465465667222
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465657572
+Delay: 5293
+Last Timestamp: 1465465652288
+Next Interval: 1465465662865
+Threshold: 57
+Deadline: 1465465666165
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465657573
+Delay: 5293
+Last Timestamp: 1465465646982
+Next Interval: 1465465662866
+Threshold: 144
+Deadline: 1465465664286
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465662861
+Delay: 5293
+Last Timestamp: 1465465652272
+Next Interval: 1465465668154
+Threshold: 77
+Deadline: 1465465674549
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465662861
+Delay: 5293
+Last Timestamp: 1465465652274
+Next Interval: 1465465668154
+Threshold: 38
+Deadline: 1465465676392
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465662862
+Delay: 5293
+Last Timestamp: 1465465657567
+Next Interval: 1465465668155
+Threshold: 200
+Deadline: 1465465686237
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465662863
+Delay: 5293
+Last Timestamp: 1465465657569
+Next Interval: 1465465668156
+Threshold: 54
+Deadline: 1465465665833
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465662864
+Delay: 5293
+Last Timestamp: 1465465652280
+Next Interval: 1465465668157
+Threshold: 199
+Deadline: 1465465678209
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465662865
+Delay: 5293
+Last Timestamp: 1465465646980
+Next Interval: 1465465668158
+Threshold: 16
+Deadline: 1465465662876
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465662866
+Delay: 5293
+Last Timestamp: 1465465652283
+Next Interval: 1465465668159
+Threshold: 59
+Deadline: 1465465663662
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465662868
+Delay: 5293
+Last Timestamp: 1465465652285
+Next Interval: 1465465668161
+Threshold: 67
+Deadline: 1465465667222
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465662870
+Delay: 5293
+Last Timestamp: 1465465652288
+Next Interval: 1465465668163
+Threshold: 57
+Deadline: 1465465666165
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465662872
+Delay: 5293
+Last Timestamp: 1465465646982
+Next Interval: 1465465668165
+Threshold: 144
+Deadline: 1465465664286
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465668156
+Delay: 5293
+Last Timestamp: 1465465652272
+Next Interval: 1465465673449
+Threshold: 77
+Deadline: 1465465674549
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465668156
+Delay: 5293
+Last Timestamp: 1465465652274
+Next Interval: 1465465673449
+Threshold: 38
+Deadline: 1465465676392
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465668157
+Delay: 5293
+Last Timestamp: 1465465657567
+Next Interval: 1465465673450
+Threshold: 200
+Deadline: 1465465686237
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465668157
+Delay: 5293
+Last Timestamp: 1465465662863
+Next Interval: 1465465673450
+Threshold: 54
+Deadline: 1465465671127
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465668159
+Delay: 5293
+Last Timestamp: 1465465652280
+Next Interval: 1465465673452
+Threshold: 199
+Deadline: 1465465678209
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465668160
+Delay: 5293
+Last Timestamp: 1465465662865
+Next Interval: 1465465673453
+Threshold: 16
+Deadline: 1465465678761
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465668161
+Delay: 5293
+Last Timestamp: 1465465662866
+Next Interval: 1465465673454
+Threshold: 59
+Deadline: 1465465674245
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465668162
+Delay: 5293
+Last Timestamp: 1465465662868
+Next Interval: 1465465673455
+Threshold: 67
+Deadline: 1465465677805
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465668163
+Delay: 5293
+Last Timestamp: 1465465662870
+Next Interval: 1465465673456
+Threshold: 57
+Deadline: 1465465676747
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465668164
+Delay: 5293
+Last Timestamp: 1465465662872
+Next Interval: 1465465673457
+Threshold: 144
+Deadline: 1465465680176
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465673451
+Delay: 5293
+Last Timestamp: 1465465652272
+Next Interval: 1465465678744
+Threshold: 77
+Deadline: 1465465674549
+Send Notification]
+[Client (20240, 24080)
+Now: 1465465673452
+Delay: 5293
+Last Timestamp: 1465465652274
+Next Interval: 1465465678745
+Threshold: 38
+Deadline: 1465465676392
+Send Notification]
+[Client (8410, 28470)
+Now: 1465465673454
+Delay: 5293
+Last Timestamp: 1465465657567
+Next Interval: 1465465678747
+Threshold: 200
+Deadline: 1465465686237
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465673455
+Delay: 5293
+Last Timestamp: 1465465668157
+Next Interval: 1465465678748
+Threshold: 54
+Deadline: 1465465676421
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465673457
+Delay: 5293
+Last Timestamp: 1465465652280
+Next Interval: 1465465678750
+Threshold: 199
+Deadline: 1465465678209
+Send Notification]
+[Client (14260, 15880)
+Now: 1465465673459
+Delay: 5293
+Last Timestamp: 1465465662865
+Next Interval: 1465465678752
+Threshold: 16
+Deadline: 1465465678761
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465673459
+Delay: 5293
+Last Timestamp: 1465465662866
+Next Interval: 1465465678752
+Threshold: 59
+Deadline: 1465465674245
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465673461
+Delay: 5293
+Last Timestamp: 1465465662868
+Next Interval: 1465465678754
+Threshold: 67
+Deadline: 1465465677805
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465673465
+Delay: 5293
+Last Timestamp: 1465465662870
+Next Interval: 1465465678758
+Threshold: 57
+Deadline: 1465465676747
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465673467
+Delay: 5293
+Last Timestamp: 1465465662872
+Next Interval: 1465465678760
+Threshold: 144
+Deadline: 1465465680176
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465678745
+Delay: 5293
+Last Timestamp: 1465465673451
+Next Interval: 1465465684038
+Threshold: 77
+Deadline: 1465465695728
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465678746
+Delay: 5293
+Last Timestamp: 1465465673452
+Next Interval: 1465465684039
+Threshold: 38
+Deadline: 1465465697570
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465678747
+Delay: 5293
+Last Timestamp: 1465465657567
+Next Interval: 1465465684040
+Threshold: 200
+Deadline: 1465465686237
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465678747
+Delay: 5293
+Last Timestamp: 1465465673455
+Next Interval: 1465465684040
+Threshold: 54
+Deadline: 1465465681719
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465678748
+Delay: 5293
+Last Timestamp: 1465465673457
+Next Interval: 1465465684041
+Threshold: 199
+Deadline: 1465465699386
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465678749
+Delay: 5293
+Last Timestamp: 1465465662865
+Next Interval: 1465465684042
+Threshold: 16
+Deadline: 1465465678761
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465678751
+Delay: 5293
+Last Timestamp: 1465465673459
+Next Interval: 1465465684044
+Threshold: 59
+Deadline: 1465465684838
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465678751
+Delay: 5293
+Last Timestamp: 1465465673461
+Next Interval: 1465465684044
+Threshold: 67
+Deadline: 1465465688398
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465678752
+Delay: 5293
+Last Timestamp: 1465465673465
+Next Interval: 1465465684045
+Threshold: 57
+Deadline: 1465465687342
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465678752
+Delay: 5293
+Last Timestamp: 1465465662872
+Next Interval: 1465465684045
+Threshold: 144
+Deadline: 1465465680176
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465684040
+Delay: 5293
+Last Timestamp: 1465465673451
+Next Interval: 1465465689333
+Threshold: 77
+Deadline: 1465465695728
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465684040
+Delay: 5293
+Last Timestamp: 1465465673452
+Next Interval: 1465465689333
+Threshold: 38
+Deadline: 1465465697570
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465684041
+Delay: 5293
+Last Timestamp: 1465465657567
+Next Interval: 1465465689334
+Threshold: 200
+Deadline: 1465465686237
+Send Notification]
+[Client (2810, 8210)
+Now: 1465465684043
+Delay: 5293
+Last Timestamp: 1465465678747
+Next Interval: 1465465689336
+Threshold: 54
+Deadline: 1465465687011
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465684044
+Delay: 5293
+Last Timestamp: 1465465673457
+Next Interval: 1465465689337
+Threshold: 199
+Deadline: 1465465699386
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465684044
+Delay: 5293
+Last Timestamp: 1465465678749
+Next Interval: 1465465689337
+Threshold: 16
+Deadline: 1465465694645
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465684045
+Delay: 5293
+Last Timestamp: 1465465673459
+Next Interval: 1465465689338
+Threshold: 59
+Deadline: 1465465684838
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465684046
+Delay: 5293
+Last Timestamp: 1465465673461
+Next Interval: 1465465689339
+Threshold: 67
+Deadline: 1465465688398
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465684047
+Delay: 5293
+Last Timestamp: 1465465673465
+Next Interval: 1465465689340
+Threshold: 57
+Deadline: 1465465687342
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465684049
+Delay: 5293
+Last Timestamp: 1465465678752
+Next Interval: 1465465689342
+Threshold: 144
+Deadline: 1465465696056
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465689335
+Delay: 5293
+Last Timestamp: 1465465673451
+Next Interval: 1465465694628
+Threshold: 77
+Deadline: 1465465695728
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465689335
+Delay: 5293
+Last Timestamp: 1465465673452
+Next Interval: 1465465694628
+Threshold: 38
+Deadline: 1465465697570
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465689335
+Delay: 5293
+Last Timestamp: 1465465684041
+Next Interval: 1465465694628
+Threshold: 200
+Deadline: 1465465712711
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465689335
+Delay: 5293
+Last Timestamp: 1465465684043
+Next Interval: 1465465694628
+Threshold: 54
+Deadline: 1465465692307
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465689336
+Delay: 5293
+Last Timestamp: 1465465673457
+Next Interval: 1465465694629
+Threshold: 199
+Deadline: 1465465699386
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465689337
+Delay: 5293
+Last Timestamp: 1465465678749
+Next Interval: 1465465694630
+Threshold: 16
+Deadline: 1465465694645
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465689337
+Delay: 5293
+Last Timestamp: 1465465684045
+Next Interval: 1465465694630
+Threshold: 59
+Deadline: 1465465695424
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465689338
+Delay: 5293
+Last Timestamp: 1465465684046
+Next Interval: 1465465694631
+Threshold: 67
+Deadline: 1465465698983
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465689338
+Delay: 5293
+Last Timestamp: 1465465684047
+Next Interval: 1465465694631
+Threshold: 57
+Deadline: 1465465697924
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465689338
+Delay: 5293
+Last Timestamp: 1465465678752
+Next Interval: 1465465694631
+Threshold: 144
+Deadline: 1465465696056
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465694630
+Delay: 5293
+Last Timestamp: 1465465673451
+Next Interval: 1465465699923
+Threshold: 77
+Deadline: 1465465695728
+Send Notification]
+[Client (20240, 24080)
+Now: 1465465694631
+Delay: 5293
+Last Timestamp: 1465465673452
+Next Interval: 1465465699924
+Threshold: 38
+Deadline: 1465465697570
+Send Notification]
+[Client (8410, 28470)
+Now: 1465465694633
+Delay: 5293
+Last Timestamp: 1465465684041
+Next Interval: 1465465699926
+Threshold: 200
+Deadline: 1465465712711
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465694633
+Delay: 5293
+Last Timestamp: 1465465689335
+Next Interval: 1465465699926
+Threshold: 54
+Deadline: 1465465697599
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465694634
+Delay: 5293
+Last Timestamp: 1465465673457
+Next Interval: 1465465699927
+Threshold: 199
+Deadline: 1465465699386
+Send Notification]
+[Client (14260, 15880)
+Now: 1465465694636
+Delay: 5293
+Last Timestamp: 1465465678749
+Next Interval: 1465465699929
+Threshold: 16
+Deadline: 1465465694645
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465694637
+Delay: 5293
+Last Timestamp: 1465465684045
+Next Interval: 1465465699930
+Threshold: 59
+Deadline: 1465465695424
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465694641
+Delay: 5293
+Last Timestamp: 1465465684046
+Next Interval: 1465465699934
+Threshold: 67
+Deadline: 1465465698983
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465694643
+Delay: 5293
+Last Timestamp: 1465465684047
+Next Interval: 1465465699936
+Threshold: 57
+Deadline: 1465465697924
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465694646
+Delay: 5293
+Last Timestamp: 1465465678752
+Next Interval: 1465465699939
+Threshold: 144
+Deadline: 1465465696056
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465699924
+Delay: 5293
+Last Timestamp: 1465465694630
+Next Interval: 1465465705217
+Threshold: 77
+Deadline: 1465465716907
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465699925
+Delay: 5293
+Last Timestamp: 1465465694631
+Next Interval: 1465465705218
+Threshold: 38
+Deadline: 1465465718749
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465699925
+Delay: 5293
+Last Timestamp: 1465465684041
+Next Interval: 1465465705218
+Threshold: 200
+Deadline: 1465465712711
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465699925
+Delay: 5293
+Last Timestamp: 1465465694633
+Next Interval: 1465465705218
+Threshold: 54
+Deadline: 1465465702897
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465699927
+Delay: 5293
+Last Timestamp: 1465465694634
+Next Interval: 1465465705220
+Threshold: 199
+Deadline: 1465465720563
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465699927
+Delay: 5293
+Last Timestamp: 1465465694636
+Next Interval: 1465465705220
+Threshold: 16
+Deadline: 1465465710532
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465699928
+Delay: 5293
+Last Timestamp: 1465465694637
+Next Interval: 1465465705221
+Threshold: 59
+Deadline: 1465465706016
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465699928
+Delay: 5293
+Last Timestamp: 1465465694641
+Next Interval: 1465465705221
+Threshold: 67
+Deadline: 1465465709578
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465699929
+Delay: 5293
+Last Timestamp: 1465465694643
+Next Interval: 1465465705222
+Threshold: 57
+Deadline: 1465465708520
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465699929
+Delay: 5293
+Last Timestamp: 1465465694646
+Next Interval: 1465465705222
+Threshold: 144
+Deadline: 1465465711950
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465705218
+Delay: 5293
+Last Timestamp: 1465465694630
+Next Interval: 1465465710511
+Threshold: 77
+Deadline: 1465465716907
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465705218
+Delay: 5293
+Last Timestamp: 1465465694631
+Next Interval: 1465465710511
+Threshold: 38
+Deadline: 1465465718749
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465705218
+Delay: 5293
+Last Timestamp: 1465465684041
+Next Interval: 1465465710511
+Threshold: 200
+Deadline: 1465465712711
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465705219
+Delay: 5293
+Last Timestamp: 1465465699925
+Next Interval: 1465465710512
+Threshold: 54
+Deadline: 1465465708189
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465705219
+Delay: 5293
+Last Timestamp: 1465465694634
+Next Interval: 1465465710512
+Threshold: 199
+Deadline: 1465465720563
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465705219
+Delay: 5293
+Last Timestamp: 1465465694636
+Next Interval: 1465465710512
+Threshold: 16
+Deadline: 1465465710532
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465705220
+Delay: 5293
+Last Timestamp: 1465465694637
+Next Interval: 1465465710513
+Threshold: 59
+Deadline: 1465465706016
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465705220
+Delay: 5293
+Last Timestamp: 1465465694641
+Next Interval: 1465465710513
+Threshold: 67
+Deadline: 1465465709578
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465705221
+Delay: 5293
+Last Timestamp: 1465465694643
+Next Interval: 1465465710514
+Threshold: 57
+Deadline: 1465465708520
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465705221
+Delay: 5293
+Last Timestamp: 1465465694646
+Next Interval: 1465465710514
+Threshold: 144
+Deadline: 1465465711950
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465710512
+Delay: 5293
+Last Timestamp: 1465465694630
+Next Interval: 1465465715805
+Threshold: 77
+Deadline: 1465465716907
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465710513
+Delay: 5293
+Last Timestamp: 1465465694631
+Next Interval: 1465465715806
+Threshold: 38
+Deadline: 1465465718749
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465710513
+Delay: 5293
+Last Timestamp: 1465465684041
+Next Interval: 1465465715806
+Threshold: 200
+Deadline: 1465465712711
+Send Notification]
+[Client (2810, 8210)
+Now: 1465465710514
+Delay: 5293
+Last Timestamp: 1465465705219
+Next Interval: 1465465715807
+Threshold: 54
+Deadline: 1465465713483
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465710516
+Delay: 5293
+Last Timestamp: 1465465694634
+Next Interval: 1465465715809
+Threshold: 199
+Deadline: 1465465720563
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465710517
+Delay: 5293
+Last Timestamp: 1465465694636
+Next Interval: 1465465715810
+Threshold: 16
+Deadline: 1465465710532
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465710519
+Delay: 5293
+Last Timestamp: 1465465705220
+Next Interval: 1465465715812
+Threshold: 59
+Deadline: 1465465716599
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465710520
+Delay: 5293
+Last Timestamp: 1465465705220
+Next Interval: 1465465715813
+Threshold: 67
+Deadline: 1465465720157
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465710520
+Delay: 5293
+Last Timestamp: 1465465705221
+Next Interval: 1465465715813
+Threshold: 57
+Deadline: 1465465719098
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465710521
+Delay: 5293
+Last Timestamp: 1465465694646
+Next Interval: 1465465715814
+Threshold: 144
+Deadline: 1465465711950
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465715806
+Delay: 5293
+Last Timestamp: 1465465694630
+Next Interval: 1465465721099
+Threshold: 77
+Deadline: 1465465716907
+Send Notification]
+[Client (20240, 24080)
+Now: 1465465715807
+Delay: 5293
+Last Timestamp: 1465465694631
+Next Interval: 1465465721100
+Threshold: 38
+Deadline: 1465465718749
+Send Notification]
+[Client (8410, 28470)
+Now: 1465465715808
+Delay: 5293
+Last Timestamp: 1465465710513
+Next Interval: 1465465721101
+Threshold: 200
+Deadline: 1465465739183
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465715808
+Delay: 5293
+Last Timestamp: 1465465710514
+Next Interval: 1465465721101
+Threshold: 54
+Deadline: 1465465718778
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465715808
+Delay: 5293
+Last Timestamp: 1465465694634
+Next Interval: 1465465721101
+Threshold: 199
+Deadline: 1465465720563
+Send Notification]
+[Client (14260, 15880)
+Now: 1465465715809
+Delay: 5293
+Last Timestamp: 1465465710517
+Next Interval: 1465465721102
+Threshold: 16
+Deadline: 1465465726413
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465715809
+Delay: 5293
+Last Timestamp: 1465465705220
+Next Interval: 1465465721102
+Threshold: 59
+Deadline: 1465465716599
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465715810
+Delay: 5293
+Last Timestamp: 1465465705220
+Next Interval: 1465465721103
+Threshold: 67
+Deadline: 1465465720157
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465715811
+Delay: 5293
+Last Timestamp: 1465465705221
+Next Interval: 1465465721104
+Threshold: 57
+Deadline: 1465465719098
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465715811
+Delay: 5293
+Last Timestamp: 1465465710521
+Next Interval: 1465465721104
+Threshold: 144
+Deadline: 1465465727825
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465721101
+Delay: 5293
+Last Timestamp: 1465465715806
+Next Interval: 1465465726394
+Threshold: 77
+Deadline: 1465465738083
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465721101
+Delay: 5293
+Last Timestamp: 1465465715807
+Next Interval: 1465465726394
+Threshold: 38
+Deadline: 1465465739925
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465721101
+Delay: 5293
+Last Timestamp: 1465465710513
+Next Interval: 1465465726394
+Threshold: 200
+Deadline: 1465465739183
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465721101
+Delay: 5293
+Last Timestamp: 1465465715808
+Next Interval: 1465465726394
+Threshold: 54
+Deadline: 1465465724072
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465721102
+Delay: 5293
+Last Timestamp: 1465465715808
+Next Interval: 1465465726395
+Threshold: 199
+Deadline: 1465465741737
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465721102
+Delay: 5293
+Last Timestamp: 1465465710517
+Next Interval: 1465465726395
+Threshold: 16
+Deadline: 1465465726413
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465721103
+Delay: 5293
+Last Timestamp: 1465465715809
+Next Interval: 1465465726396
+Threshold: 59
+Deadline: 1465465727188
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465721103
+Delay: 5293
+Last Timestamp: 1465465715810
+Next Interval: 1465465726396
+Threshold: 67
+Deadline: 1465465730747
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465721103
+Delay: 5293
+Last Timestamp: 1465465715811
+Next Interval: 1465465726396
+Threshold: 57
+Deadline: 1465465729688
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465721103
+Delay: 5293
+Last Timestamp: 1465465710521
+Next Interval: 1465465726396
+Threshold: 144
+Deadline: 1465465727825
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465726395
+Delay: 5293
+Last Timestamp: 1465465715806
+Next Interval: 1465465731688
+Threshold: 77
+Deadline: 1465465738083
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465726395
+Delay: 5293
+Last Timestamp: 1465465715807
+Next Interval: 1465465731688
+Threshold: 38
+Deadline: 1465465739925
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465726396
+Delay: 5293
+Last Timestamp: 1465465710513
+Next Interval: 1465465731689
+Threshold: 200
+Deadline: 1465465739183
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465726396
+Delay: 5293
+Last Timestamp: 1465465721101
+Next Interval: 1465465731689
+Threshold: 54
+Deadline: 1465465729365
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465726397
+Delay: 5293
+Last Timestamp: 1465465715808
+Next Interval: 1465465731690
+Threshold: 199
+Deadline: 1465465741737
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465726398
+Delay: 5293
+Last Timestamp: 1465465710517
+Next Interval: 1465465731691
+Threshold: 16
+Deadline: 1465465726413
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465726399
+Delay: 5293
+Last Timestamp: 1465465715809
+Next Interval: 1465465731692
+Threshold: 59
+Deadline: 1465465727188
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465726400
+Delay: 5293
+Last Timestamp: 1465465715810
+Next Interval: 1465465731693
+Threshold: 67
+Deadline: 1465465730747
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465726401
+Delay: 5293
+Last Timestamp: 1465465715811
+Next Interval: 1465465731694
+Threshold: 57
+Deadline: 1465465729688
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465726402
+Delay: 5293
+Last Timestamp: 1465465710521
+Next Interval: 1465465731695
+Threshold: 144
+Deadline: 1465465727825
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465731689
+Delay: 5293
+Last Timestamp: 1465465715806
+Next Interval: 1465465736982
+Threshold: 77
+Deadline: 1465465738083
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465731690
+Delay: 5293
+Last Timestamp: 1465465715807
+Next Interval: 1465465736983
+Threshold: 38
+Deadline: 1465465739925
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465731690
+Delay: 5293
+Last Timestamp: 1465465710513
+Next Interval: 1465465736983
+Threshold: 200
+Deadline: 1465465739183
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465731690
+Delay: 5293
+Last Timestamp: 1465465726396
+Next Interval: 1465465736983
+Threshold: 54
+Deadline: 1465465734660
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465731691
+Delay: 5293
+Last Timestamp: 1465465715808
+Next Interval: 1465465736984
+Threshold: 199
+Deadline: 1465465741737
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465731692
+Delay: 5293
+Last Timestamp: 1465465726398
+Next Interval: 1465465736985
+Threshold: 16
+Deadline: 1465465742294
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465731692
+Delay: 5293
+Last Timestamp: 1465465726399
+Next Interval: 1465465736985
+Threshold: 59
+Deadline: 1465465737778
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465731692
+Delay: 5293
+Last Timestamp: 1465465726400
+Next Interval: 1465465736985
+Threshold: 67
+Deadline: 1465465741337
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465731692
+Delay: 5293
+Last Timestamp: 1465465726401
+Next Interval: 1465465736985
+Threshold: 57
+Deadline: 1465465740278
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465731692
+Delay: 5293
+Last Timestamp: 1465465726402
+Next Interval: 1465465736985
+Threshold: 144
+Deadline: 1465465743706
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465736984
+Delay: 5293
+Last Timestamp: 1465465715806
+Next Interval: 1465465742277
+Threshold: 77
+Deadline: 1465465738083
+Send Notification]
+[Client (20240, 24080)
+Now: 1465465736985
+Delay: 5293
+Last Timestamp: 1465465715807
+Next Interval: 1465465742278
+Threshold: 38
+Deadline: 1465465739925
+Send Notification]
+[Client (8410, 28470)
+Now: 1465465736986
+Delay: 5293
+Last Timestamp: 1465465710513
+Next Interval: 1465465742279
+Threshold: 200
+Deadline: 1465465739183
+Send Notification]
+[Client (2810, 8210)
+Now: 1465465736986
+Delay: 5293
+Last Timestamp: 1465465731690
+Next Interval: 1465465742279
+Threshold: 54
+Deadline: 1465465739954
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465736987
+Delay: 5293
+Last Timestamp: 1465465715808
+Next Interval: 1465465742280
+Threshold: 199
+Deadline: 1465465741737
+Send Notification]
+[Client (14260, 15880)
+Now: 1465465736988
+Delay: 5293
+Last Timestamp: 1465465726398
+Next Interval: 1465465742281
+Threshold: 16
+Deadline: 1465465742294
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465736988
+Delay: 5293
+Last Timestamp: 1465465726399
+Next Interval: 1465465742281
+Threshold: 59
+Deadline: 1465465737778
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465736989
+Delay: 5293
+Last Timestamp: 1465465726400
+Next Interval: 1465465742282
+Threshold: 67
+Deadline: 1465465741337
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465736989
+Delay: 5293
+Last Timestamp: 1465465726401
+Next Interval: 1465465742282
+Threshold: 57
+Deadline: 1465465740278
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465736990
+Delay: 5293
+Last Timestamp: 1465465726402
+Next Interval: 1465465742283
+Threshold: 144
+Deadline: 1465465743706
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465742277
+Delay: 5293
+Last Timestamp: 1465465736984
+Next Interval: 1465465747570
+Threshold: 77
+Deadline: 1465465759261
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465742278
+Delay: 5293
+Last Timestamp: 1465465736985
+Next Interval: 1465465747571
+Threshold: 38
+Deadline: 1465465761103
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465742278
+Delay: 5293
+Last Timestamp: 1465465736986
+Next Interval: 1465465747571
+Threshold: 200
+Deadline: 1465465765656
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465742278
+Delay: 5293
+Last Timestamp: 1465465736986
+Next Interval: 1465465747571
+Threshold: 54
+Deadline: 1465465745250
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465742278
+Delay: 5293
+Last Timestamp: 1465465736987
+Next Interval: 1465465747571
+Threshold: 199
+Deadline: 1465465762916
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465742279
+Delay: 5293
+Last Timestamp: 1465465726398
+Next Interval: 1465465747572
+Threshold: 16
+Deadline: 1465465742294
+Send Notification]
+[Client (5380, 11320)
+Now: 1465465742279
+Delay: 5293
+Last Timestamp: 1465465736988
+Next Interval: 1465465747572
+Threshold: 59
+Deadline: 1465465748367
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465742279
+Delay: 5293
+Last Timestamp: 1465465736989
+Next Interval: 1465465747572
+Threshold: 67
+Deadline: 1465465751926
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465742279
+Delay: 5293
+Last Timestamp: 1465465736989
+Next Interval: 1465465747572
+Threshold: 57
+Deadline: 1465465750866
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465742280
+Delay: 5293
+Last Timestamp: 1465465726402
+Next Interval: 1465465747573
+Threshold: 144
+Deadline: 1465465743706
+Send Notification]
+[Client (14470, 22200)
+Now: 1465465747571
+Delay: 5293
+Last Timestamp: 1465465736984
+Next Interval: 1465465752864
+Threshold: 77
+Deadline: 1465465759261
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465747572
+Delay: 5293
+Last Timestamp: 1465465736985
+Next Interval: 1465465752865
+Threshold: 38
+Deadline: 1465465761103
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465747572
+Delay: 5293
+Last Timestamp: 1465465736986
+Next Interval: 1465465752865
+Threshold: 200
+Deadline: 1465465765656
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465747573
+Delay: 5293
+Last Timestamp: 1465465742278
+Next Interval: 1465465752866
+Threshold: 54
+Deadline: 1465465750542
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465747574
+Delay: 5293
+Last Timestamp: 1465465736987
+Next Interval: 1465465752867
+Threshold: 199
+Deadline: 1465465762916
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465747574
+Delay: 5293
+Last Timestamp: 1465465742279
+Next Interval: 1465465752867
+Threshold: 16
+Deadline: 1465465758175
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465747574
+Delay: 5293
+Last Timestamp: 1465465736988
+Next Interval: 1465465752867
+Threshold: 59
+Deadline: 1465465748367
+Send Notification]
+[Client (8130, 14870)
+Now: 1465465747575
+Delay: 5293
+Last Timestamp: 1465465736989
+Next Interval: 1465465752868
+Threshold: 67
+Deadline: 1465465751926
+Send Notification]
+[Client (8060, 13820)
+Now: 1465465747576
+Delay: 5293
+Last Timestamp: 1465465736989
+Next Interval: 1465465752869
+Threshold: 57
+Deadline: 1465465750866
+Send Notification]
+[Client (2710, 17160)
+Now: 1465465747578
+Delay: 5293
+Last Timestamp: 1465465742280
+Next Interval: 1465465752871
+Threshold: 144
+Deadline: 1465465759584
+ABORT Notification]
+[Client (14470, 22200)
+Now: 1465465752866
+Delay: 5293
+Last Timestamp: 1465465736984
+Next Interval: 1465465758159
+Threshold: 77
+Deadline: 1465465759261
+ABORT Notification]
+[Client (20240, 24080)
+Now: 1465465752867
+Delay: 5293
+Last Timestamp: 1465465736985
+Next Interval: 1465465758160
+Threshold: 38
+Deadline: 1465465761103
+ABORT Notification]
+[Client (8410, 28470)
+Now: 1465465752867
+Delay: 5293
+Last Timestamp: 1465465736986
+Next Interval: 1465465758160
+Threshold: 200
+Deadline: 1465465765656
+ABORT Notification]
+[Client (2810, 8210)
+Now: 1465465752868
+Delay: 5293
+Last Timestamp: 1465465747573
+Next Interval: 1465465758161
+Threshold: 54
+Deadline: 1465465755837
+Send Notification]
+[Client (5760, 25730)
+Now: 1465465752869
+Delay: 5293
+Last Timestamp: 1465465736987
+Next Interval: 1465465758162
+Threshold: 199
+Deadline: 1465465762916
+ABORT Notification]
+[Client (14260, 15880)
+Now: 1465465752869
+Delay: 5293
+Last Timestamp: 1465465742279
+Next Interval: 1465465758162
+Threshold: 16
+Deadline: 1465465758175
+ABORT Notification]
+[Client (5380, 11320)
+Now: 1465465752870
+Delay: 5293
+Last Timestamp: 1465465747574
+Next Interval: 1465465758163
+Threshold: 59
+Deadline: 1465465758953
+ABORT Notification]
+[Client (8130, 14870)
+Now: 1465465752870
+Delay: 5293
+Last Timestamp: 1465465747575
+Next Interval: 1465465758163
+Threshold: 67
+Deadline: 1465465762512
+ABORT Notification]
+[Client (8060, 13820)
+Now: 1465465752870
+Delay: 5293
+Last Timestamp: 1465465747576
+Next Interval: 1465465758163
+Threshold: 57
+Deadline: 1465465761453
+ABORT Notification]
+[Client (2710, 17160)
+Now: 1465465752871
+Delay: 5293
+Last Timestamp: 1465465742280
+Next Interval: 1465465758164
+Threshold: 144
+Deadline: 1465465759584
+ABORT Notification]

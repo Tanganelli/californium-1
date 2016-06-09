@@ -35,6 +35,7 @@ import org.eclipse.californium.core.coap.Response;
 import org.eclipse.californium.core.network.Exchange;
 import org.eclipse.californium.core.observe.ObserveManager;
 import org.eclipse.californium.core.observe.ObserveRelation;
+import org.eclipse.californium.core.observe.ObserveRelationImpl;
 import org.eclipse.californium.core.observe.ObservingEndpoint;
 import org.eclipse.californium.core.server.resources.Resource;
 
@@ -120,7 +121,7 @@ public final class ServerMessageDeliverer implements MessageDeliverer {
 						"Initiate an observe relation between {0}:{1} and resource {2}",
 						new Object[]{request.getSource(), request.getSourcePort(), resource.getURI()});
 				ObservingEndpoint remote = observeManager.findObservingEndpoint(source);
-				ObserveRelation relation = new ObserveRelation(remote, resource, exchange);
+				ObserveRelation relation = new ObserveRelationImpl(remote, resource, exchange);
 				remote.addObserveRelation(relation);
 				exchange.setRelation(relation);
 				// all that's left is to add the relation to the resource which
