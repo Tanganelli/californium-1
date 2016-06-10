@@ -44,9 +44,11 @@
 		<module>cf-benchmark</module>
 		<module>cf-benchmark-observe</module>
 		<module>cf-reverseproxy</module>
-		<module>cf-interface-server</module>
+		<module>cf-dynamic-period-server</module>
     	<module>cf-interface-client</module>
-  </modules>
+    	<module>cd-interface-server</module>
+    	<module>cf-interface-server</module>
+	</modules>
 
 	<build>
 		<plugins>

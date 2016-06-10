@@ -25,18 +25,18 @@ public class ReverseProxyCoAPHandler implements CoapHandler{
         if(coapResponse.getOptions().hasObserve()){
 	        int observe_number = coapResponse.getOptions().getObserve();
 	        interface_resource.getNotificationOrderer().setCurrent(observe_number);
+	        count++;
+	        LOGGER.info("new incoming notification: " + count);
+	        System.out.println("Notification: " + count);
+	        Date now = new Date();
+	        long timestamp = now.getTime();
+	        interface_resource.setTimestamp(timestamp);
+	        InterfaceObserveRelationFilter filter = new InterfaceObserveRelationFilter(interface_resource);
+
+	        this.interface_resource.changed(filter);
         }
         //if(count==10)
         //	ownerResource.emulatedDelay = 11000;
-        count++;
-        LOGGER.info("new incoming notification: "+ count);
-        Date now = new Date();
-        long timestamp = now.getTime();
-        interface_resource.setTimestamp(timestamp);
-        InterfaceObserveRelationFilter filter = new InterfaceObserveRelationFilter(interface_resource);
-
-        this.interface_resource.changed(filter);
-
     }
 
     @Override

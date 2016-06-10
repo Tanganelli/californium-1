@@ -42,15 +42,15 @@ public class InterfaceObserveRelationFilter implements ObserveRelationFilter {
                 deadline = last_timestamp + ((long)rel.getPmax()) + threshold;
             }
     		synchronized(this){
-	    		System.out.println("[Client (" + ((long)rel.getPmin()) + ", " + ((long)rel.getPmax()) + ")");
+    			if(nextInterval > deadline) System.out.print("[Send Notification ");
+	    		else System.out.print("[ABORT Notification ");
+	    		System.out.println("Client (" + ((long)rel.getPmin()) + ", " + ((long)rel.getPmax()) + ")");
 	    		System.out.println("Now: " + timestamp);
 	    		System.out.println("Delay: " + (long)delay);
 	    		System.out.println("Last Timestamp: " + last_timestamp);
 	    		System.out.println("Next Interval: " + nextInterval);
 	    		System.out.println("Threshold: " + threshold);
-	    		System.out.println("Deadline: " + deadline);
-	    		if(nextInterval > deadline) System.out.println("Send Notification]");
-	    		else System.out.println("ABORT Notification]");
+	    		System.out.println("Deadline: " + deadline + "]");
     		}
     		if(nextInterval > deadline){
     			rel.setLastTimestamp(timestamp);

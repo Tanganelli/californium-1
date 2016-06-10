@@ -271,7 +271,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
             int ret = handleGETCoRE(exchange);
             if(ret == 0){
                 // create Observe request for the first client
-                if(relation == null || relation.getCurrent() == null || relation.isCanceled()){
+                if(observeEnabled.compareAndSet(false, true)){
                     relation = client.observeAndWait(new ReverseProxyCoAPHandler(this));
                     Response responseForClients = getLast(request);
                     Date now = new Date();
@@ -464,6 +464,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
         } finally{
             lock.unlock();
         }*/
+        while(relation == null || relation.getCurrent() == null);
         Response notification = relation.getCurrent().advanced();
 
         // accept without create a new observing relationship
@@ -667,7 +668,7 @@ public class ReverseProxyResourceInterface extends ReverseProxyResource {
 
             if(subscriberList.isEmpty()){
                 LOGGER.log(Level.INFO, "SubscriberList Empty");
-                //observeEnabled.set(false);
+                observeEnabled.set(false);
                 /*lock.lock();
                 newNotification.signalAll();
                 lock.unlock();*/

@@ -1,14 +1,5 @@
 package org.eclipse.californium.examples;
 
-import org.eclipse.californium.core.CoapResource;
-import org.eclipse.californium.core.CoapServer;
-import org.eclipse.californium.core.coap.CoAP;
-import org.eclipse.californium.core.coap.Request;
-import org.eclipse.californium.core.coap.Response;
-import org.eclipse.californium.core.network.CoapEndpoint;
-import org.eclipse.californium.core.network.EndpointManager;
-import org.eclipse.californium.core.server.resources.CoapExchange;
-
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -24,9 +15,15 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created by jacko on 16/05/16.
- */
+import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.CoapServer;
+import org.eclipse.californium.core.coap.CoAP;
+import org.eclipse.californium.core.coap.Request;
+import org.eclipse.californium.core.coap.Response;
+import org.eclipse.californium.core.network.CoapEndpoint;
+import org.eclipse.californium.core.network.EndpointManager;
+import org.eclipse.californium.core.server.resources.CoapExchange;
+
 public class InterfaceServer extends CoapServer {
     public static void main(String[] args) {
         int port = 5683;
@@ -51,7 +48,7 @@ public class InterfaceServer extends CoapServer {
             System.err.println("Failed to initialize server: " + e.getMessage());
         }
     }
-
+    
     /**
      * Add individual endpoints listening on default CoAP port on all IPv4 addresses of all network interfaces.
      */
@@ -64,7 +61,7 @@ public class InterfaceServer extends CoapServer {
             }
         }
     }
-
+    
     /*
      * Constructor for a new Hello-World server. Here, the resources
      * of the server are initialized.

@@ -1,0 +1,1337 @@
+Notification: 1
+[ABORT Notification Client (8450, 42680)
+Now: 1465544755172
+Delay: 12640
+Last Timestamp: 1465544755154
+Next Interval: 1465544767812
+Threshold: 342
+Deadline: 1465544798176]
+[ABORT Notification Client (7800, 17970)
+Now: 1465544755173
+Delay: 12640
+Last Timestamp: 1465544755148
+Next Interval: 1465544767813
+Threshold: 101
+Deadline: 1465544773219]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544755174
+Delay: 12640
+Last Timestamp: 1465544755149
+Next Interval: 1465544767814
+Threshold: 132
+Deadline: 1465544791911]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544755175
+Delay: 12640
+Last Timestamp: 1465544755157
+Next Interval: 1465544767815
+Threshold: 27
+Deadline: 1465544780984]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544755175
+Delay: 12640
+Last Timestamp: 1465544755160
+Next Interval: 1465544767815
+Threshold: 343
+Deadline: 1465544802873]
+Notification: 2
+[Send Notification Client (3390, 12640)
+Now: 1465544767788
+Delay: 12640
+Last Timestamp: 1465544755209
+Next Interval: 1465544780428
+Threshold: 92
+Deadline: 1465544767941]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544767791
+Delay: 12640
+Last Timestamp: 1465544755154
+Next Interval: 1465544780431
+Threshold: 342
+Deadline: 1465544798176]
+[Send Notification Client (7800, 17970)
+Now: 1465544767792
+Delay: 12640
+Last Timestamp: 1465544755148
+Next Interval: 1465544780432
+Threshold: 101
+Deadline: 1465544773219]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544767795
+Delay: 12640
+Last Timestamp: 1465544755149
+Next Interval: 1465544780435
+Threshold: 132
+Deadline: 1465544791911]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544767796
+Delay: 12640
+Last Timestamp: 1465544755157
+Next Interval: 1465544780436
+Threshold: 27
+Deadline: 1465544780984]
+[Send Notification Client (12400, 22260)
+Now: 1465544767797
+Delay: 12640
+Last Timestamp: 1465544755182
+Next Interval: 1465544780437
+Threshold: 98
+Deadline: 1465544777540]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544767800
+Delay: 12640
+Last Timestamp: 1465544755195
+Next Interval: 1465544780440
+Threshold: 65
+Deadline: 1465544795120]
+[Send Notification Client (12500, 24060)
+Now: 1465544767801
+Delay: 12640
+Last Timestamp: 1465544755178
+Next Interval: 1465544780441
+Threshold: 115
+Deadline: 1465544779353]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544767803
+Delay: 12640
+Last Timestamp: 1465544755160
+Next Interval: 1465544780443
+Threshold: 343
+Deadline: 1465544802873]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544767804
+Delay: 12640
+Last Timestamp: 1465544755193
+Next Interval: 1465544780444
+Threshold: 247
+Deadline: 1465544783430]
+Notification: 3
+[Send Notification Client (3390, 12640)
+Now: 1465544780429
+Delay: 12640
+Last Timestamp: 1465544767788
+Next Interval: 1465544793069
+Threshold: 92
+Deadline: 1465544780520]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544780432
+Delay: 12640
+Last Timestamp: 1465544755154
+Next Interval: 1465544793072
+Threshold: 342
+Deadline: 1465544798176]
+[Send Notification Client (7800, 17970)
+Now: 1465544780433
+Delay: 12640
+Last Timestamp: 1465544767792
+Next Interval: 1465544793073
+Threshold: 101
+Deadline: 1465544785863]
+[Send Notification Client (23380, 36630)
+Now: 1465544780436
+Delay: 12640
+Last Timestamp: 1465544755149
+Next Interval: 1465544793076
+Threshold: 132
+Deadline: 1465544791911]
+[Send Notification Client (23020, 25800)
+Now: 1465544780439
+Delay: 12640
+Last Timestamp: 1465544755157
+Next Interval: 1465544793079
+Threshold: 27
+Deadline: 1465544780984]
+[Send Notification Client (12400, 22260)
+Now: 1465544780442
+Delay: 12640
+Last Timestamp: 1465544767797
+Next Interval: 1465544793082
+Threshold: 98
+Deadline: 1465544790155]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544780444
+Delay: 12640
+Last Timestamp: 1465544755195
+Next Interval: 1465544793084
+Threshold: 65
+Deadline: 1465544795120]
+[Send Notification Client (12500, 24060)
+Now: 1465544780445
+Delay: 12640
+Last Timestamp: 1465544767801
+Next Interval: 1465544793085
+Threshold: 115
+Deadline: 1465544791976]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544780447
+Delay: 12640
+Last Timestamp: 1465544755160
+Next Interval: 1465544793087
+Threshold: 343
+Deadline: 1465544802873]
+[Send Notification Client (3220, 27990)
+Now: 1465544780447
+Delay: 12640
+Last Timestamp: 1465544755193
+Next Interval: 1465544793087
+Threshold: 247
+Deadline: 1465544783430]
+Notification: 4
+[Send Notification Client (3390, 12640)
+Now: 1465544793072
+Delay: 12640
+Last Timestamp: 1465544780429
+Next Interval: 1465544805712
+Threshold: 92
+Deadline: 1465544793161]
+[Send Notification Client (8450, 42680)
+Now: 1465544793073
+Delay: 12640
+Last Timestamp: 1465544755154
+Next Interval: 1465544805713
+Threshold: 342
+Deadline: 1465544798176]
+[Send Notification Client (7800, 17970)
+Now: 1465544793075
+Delay: 12640
+Last Timestamp: 1465544780433
+Next Interval: 1465544805715
+Threshold: 101
+Deadline: 1465544798504]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544793076
+Delay: 12640
+Last Timestamp: 1465544780436
+Next Interval: 1465544805716
+Threshold: 132
+Deadline: 1465544817198]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544793077
+Delay: 12640
+Last Timestamp: 1465544780439
+Next Interval: 1465544805717
+Threshold: 27
+Deadline: 1465544806266]
+[Send Notification Client (12400, 22260)
+Now: 1465544793077
+Delay: 12640
+Last Timestamp: 1465544780442
+Next Interval: 1465544805717
+Threshold: 98
+Deadline: 1465544802800]
+[Send Notification Client (33280, 39860)
+Now: 1465544793079
+Delay: 12640
+Last Timestamp: 1465544755195
+Next Interval: 1465544805719
+Threshold: 65
+Deadline: 1465544795120]
+[Send Notification Client (12500, 24060)
+Now: 1465544793081
+Delay: 12640
+Last Timestamp: 1465544780445
+Next Interval: 1465544805721
+Threshold: 115
+Deadline: 1465544804620]
+[Send Notification Client (12980, 47370)
+Now: 1465544793083
+Delay: 12640
+Last Timestamp: 1465544755160
+Next Interval: 1465544805723
+Threshold: 343
+Deadline: 1465544802873]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544793084
+Delay: 12640
+Last Timestamp: 1465544780447
+Next Interval: 1465544805724
+Threshold: 247
+Deadline: 1465544808684]
+Notification: 5
+[Send Notification Client (3390, 12640)
+Now: 1465544805712
+Delay: 12640
+Last Timestamp: 1465544793072
+Next Interval: 1465544818352
+Threshold: 92
+Deadline: 1465544805804]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544805713
+Delay: 12640
+Last Timestamp: 1465544793073
+Next Interval: 1465544818353
+Threshold: 342
+Deadline: 1465544836095]
+[Send Notification Client (7800, 17970)
+Now: 1465544805714
+Delay: 12640
+Last Timestamp: 1465544793075
+Next Interval: 1465544818354
+Threshold: 101
+Deadline: 1465544811146]
+[Send Notification Client (23380, 36630)
+Now: 1465544805715
+Delay: 12640
+Last Timestamp: 1465544780436
+Next Interval: 1465544818355
+Threshold: 132
+Deadline: 1465544817198]
+[Send Notification Client (23020, 25800)
+Now: 1465544805716
+Delay: 12640
+Last Timestamp: 1465544780439
+Next Interval: 1465544818356
+Threshold: 27
+Deadline: 1465544806266]
+[Send Notification Client (12400, 22260)
+Now: 1465544805718
+Delay: 12640
+Last Timestamp: 1465544793077
+Next Interval: 1465544818358
+Threshold: 98
+Deadline: 1465544815435]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544805720
+Delay: 12640
+Last Timestamp: 1465544793079
+Next Interval: 1465544818360
+Threshold: 65
+Deadline: 1465544833004]
+[Send Notification Client (12500, 24060)
+Now: 1465544805720
+Delay: 12640
+Last Timestamp: 1465544793081
+Next Interval: 1465544818360
+Threshold: 115
+Deadline: 1465544817256]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544805722
+Delay: 12640
+Last Timestamp: 1465544793083
+Next Interval: 1465544818362
+Threshold: 343
+Deadline: 1465544840796]
+[Send Notification Client (3220, 27990)
+Now: 1465544805722
+Delay: 12640
+Last Timestamp: 1465544780447
+Next Interval: 1465544818362
+Threshold: 247
+Deadline: 1465544808684]
+Notification: 6
+[Send Notification Client (3390, 12640)
+Now: 1465544818353
+Delay: 12640
+Last Timestamp: 1465544805712
+Next Interval: 1465544830993
+Threshold: 92
+Deadline: 1465544818444]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544818354
+Delay: 12640
+Last Timestamp: 1465544793073
+Next Interval: 1465544830994
+Threshold: 342
+Deadline: 1465544836095]
+[Send Notification Client (7800, 17970)
+Now: 1465544818354
+Delay: 12640
+Last Timestamp: 1465544805714
+Next Interval: 1465544830994
+Threshold: 101
+Deadline: 1465544823785]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544818355
+Delay: 12640
+Last Timestamp: 1465544805715
+Next Interval: 1465544830995
+Threshold: 132
+Deadline: 1465544842477]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544818356
+Delay: 12640
+Last Timestamp: 1465544805716
+Next Interval: 1465544830996
+Threshold: 27
+Deadline: 1465544831543]
+[Send Notification Client (12400, 22260)
+Now: 1465544818356
+Delay: 12640
+Last Timestamp: 1465544805718
+Next Interval: 1465544830996
+Threshold: 98
+Deadline: 1465544828076]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544818357
+Delay: 12640
+Last Timestamp: 1465544793079
+Next Interval: 1465544830997
+Threshold: 65
+Deadline: 1465544833004]
+[Send Notification Client (12500, 24060)
+Now: 1465544818357
+Delay: 12640
+Last Timestamp: 1465544805720
+Next Interval: 1465544830997
+Threshold: 115
+Deadline: 1465544829895]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544818358
+Delay: 12640
+Last Timestamp: 1465544793083
+Next Interval: 1465544830998
+Threshold: 343
+Deadline: 1465544840796]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544818358
+Delay: 12640
+Last Timestamp: 1465544805722
+Next Interval: 1465544830998
+Threshold: 247
+Deadline: 1465544833959]
+Notification: 7
+[Send Notification Client (3390, 12640)
+Now: 1465544830995
+Delay: 12640
+Last Timestamp: 1465544818353
+Next Interval: 1465544843635
+Threshold: 92
+Deadline: 1465544831085]
+[Send Notification Client (8450, 42680)
+Now: 1465544830997
+Delay: 12640
+Last Timestamp: 1465544793073
+Next Interval: 1465544843637
+Threshold: 342
+Deadline: 1465544836095]
+[Send Notification Client (7800, 17970)
+Now: 1465544830998
+Delay: 12640
+Last Timestamp: 1465544818354
+Next Interval: 1465544843638
+Threshold: 101
+Deadline: 1465544836425]
+[Send Notification Client (23380, 36630)
+Now: 1465544830999
+Delay: 12640
+Last Timestamp: 1465544805715
+Next Interval: 1465544843639
+Threshold: 132
+Deadline: 1465544842477]
+[Send Notification Client (23020, 25800)
+Now: 1465544831001
+Delay: 12640
+Last Timestamp: 1465544805716
+Next Interval: 1465544843641
+Threshold: 27
+Deadline: 1465544831543]
+[Send Notification Client (12400, 22260)
+Now: 1465544831002
+Delay: 12640
+Last Timestamp: 1465544818356
+Next Interval: 1465544843642
+Threshold: 98
+Deadline: 1465544840714]
+[Send Notification Client (33280, 39860)
+Now: 1465544831004
+Delay: 12640
+Last Timestamp: 1465544793079
+Next Interval: 1465544843644
+Threshold: 65
+Deadline: 1465544833004]
+[Send Notification Client (12500, 24060)
+Now: 1465544831006
+Delay: 12640
+Last Timestamp: 1465544818357
+Next Interval: 1465544843646
+Threshold: 115
+Deadline: 1465544842532]
+[Send Notification Client (12980, 47370)
+Now: 1465544831009
+Delay: 12640
+Last Timestamp: 1465544793083
+Next Interval: 1465544843649
+Threshold: 343
+Deadline: 1465544840796]
+[Send Notification Client (3220, 27990)
+Now: 1465544831011
+Delay: 12640
+Last Timestamp: 1465544805722
+Next Interval: 1465544843651
+Threshold: 247
+Deadline: 1465544833959]
+Notification: 8
+[Send Notification Client (3390, 12640)
+Now: 1465544843637
+Delay: 12640
+Last Timestamp: 1465544830995
+Next Interval: 1465544856277
+Threshold: 92
+Deadline: 1465544843727]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544843638
+Delay: 12640
+Last Timestamp: 1465544830997
+Next Interval: 1465544856278
+Threshold: 342
+Deadline: 1465544874019]
+[Send Notification Client (7800, 17970)
+Now: 1465544843638
+Delay: 12640
+Last Timestamp: 1465544830998
+Next Interval: 1465544856278
+Threshold: 101
+Deadline: 1465544849069]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544843640
+Delay: 12640
+Last Timestamp: 1465544830999
+Next Interval: 1465544856280
+Threshold: 132
+Deadline: 1465544867761]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544843641
+Delay: 12640
+Last Timestamp: 1465544831001
+Next Interval: 1465544856281
+Threshold: 27
+Deadline: 1465544856828]
+[Send Notification Client (12400, 22260)
+Now: 1465544843641
+Delay: 12640
+Last Timestamp: 1465544831002
+Next Interval: 1465544856281
+Threshold: 98
+Deadline: 1465544853360]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544843643
+Delay: 12640
+Last Timestamp: 1465544831004
+Next Interval: 1465544856283
+Threshold: 65
+Deadline: 1465544870929]
+[Send Notification Client (12500, 24060)
+Now: 1465544843643
+Delay: 12640
+Last Timestamp: 1465544831006
+Next Interval: 1465544856283
+Threshold: 115
+Deadline: 1465544855181]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544843645
+Delay: 12640
+Last Timestamp: 1465544831009
+Next Interval: 1465544856285
+Threshold: 343
+Deadline: 1465544878722]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544843645
+Delay: 12640
+Last Timestamp: 1465544831011
+Next Interval: 1465544856285
+Threshold: 247
+Deadline: 1465544859248]
+Notification: 9
+[Send Notification Client (3390, 12640)
+Now: 1465544856278
+Delay: 12640
+Last Timestamp: 1465544843637
+Next Interval: 1465544868918
+Threshold: 92
+Deadline: 1465544856369]
+[ABORT Notification Client (8450, 42680)
+Now: 1465544856278
+Delay: 12640
+Last Timestamp: 1465544830997
+Next Interval: 1465544868918
+Threshold: 342
+Deadline: 1465544874019]
+[Send Notification Client (7800, 17970)
+Now: 1465544856278
+Delay: 12640
+Last Timestamp: 1465544843638
+Next Interval: 1465544868918
+Threshold: 101
+Deadline: 1465544861709]
+[Send Notification Client (23380, 36630)
+Now: 1465544856279
+Delay: 12640
+Last Timestamp: 1465544830999
+Next Interval: 1465544868919
+Threshold: 132
+Deadline: 1465544867761]
+[Send Notification Client (23020, 25800)
+Now: 1465544856280
+Delay: 12640
+Last Timestamp: 1465544831001
+Next Interval: 1465544868920
+Threshold: 27
+Deadline: 1465544856828]
+[Send Notification Client (12400, 22260)
+Now: 1465544856281
+Delay: 12640
+Last Timestamp: 1465544843641
+Next Interval: 1465544868921
+Threshold: 98
+Deadline: 1465544865999]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544856281
+Delay: 12640
+Last Timestamp: 1465544831004
+Next Interval: 1465544868921
+Threshold: 65
+Deadline: 1465544870929]
+[Send Notification Client (12500, 24060)
+Now: 1465544856282
+Delay: 12640
+Last Timestamp: 1465544843643
+Next Interval: 1465544868922
+Threshold: 115
+Deadline: 1465544867818]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544856282
+Delay: 12640
+Last Timestamp: 1465544831009
+Next Interval: 1465544868922
+Threshold: 343
+Deadline: 1465544878722]
+[Send Notification Client (3220, 27990)
+Now: 1465544856283
+Delay: 12640
+Last Timestamp: 1465544831011
+Next Interval: 1465544868923
+Threshold: 247
+Deadline: 1465544859248]
+Notification: 10
+[Send Notification Client (3390, 12640)
+Now: 1465544868919
+Delay: 12640
+Last Timestamp: 1465544856278
+Next Interval: 1465544881559
+Threshold: 92
+Deadline: 1465544869010]
+[Send Notification Client (8450, 42680)
+Now: 1465544868921
+Delay: 12640
+Last Timestamp: 1465544830997
+Next Interval: 1465544881561
+Threshold: 342
+Deadline: 1465544874019]
+[Send Notification Client (7800, 17970)
+Now: 1465544868923
+Delay: 12640
+Last Timestamp: 1465544856278
+Next Interval: 1465544881563
+Threshold: 101
+Deadline: 1465544874349]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544868924
+Delay: 12640
+Last Timestamp: 1465544856279
+Next Interval: 1465544881564
+Threshold: 132
+Deadline: 1465544893041]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544868925
+Delay: 12640
+Last Timestamp: 1465544856280
+Next Interval: 1465544881565
+Threshold: 27
+Deadline: 1465544882107]
+[Send Notification Client (12400, 22260)
+Now: 1465544868925
+Delay: 12640
+Last Timestamp: 1465544856281
+Next Interval: 1465544881565
+Threshold: 98
+Deadline: 1465544878639]
+[Send Notification Client (33280, 39860)
+Now: 1465544868927
+Delay: 12640
+Last Timestamp: 1465544831004
+Next Interval: 1465544881567
+Threshold: 65
+Deadline: 1465544870929]
+[Send Notification Client (12500, 24060)
+Now: 1465544868935
+Delay: 12900
+Last Timestamp: 1465544856282
+Next Interval: 1465544881835
+Threshold: 115
+Deadline: 1465544880457]
+[Send Notification Client (12980, 47370)
+Now: 1465544868937
+Delay: 12900
+Last Timestamp: 1465544831009
+Next Interval: 1465544881837
+Threshold: 343
+Deadline: 1465544878722]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544868939
+Delay: 12900
+Last Timestamp: 1465544856283
+Next Interval: 1465544881839
+Threshold: 247
+Deadline: 1465544884520]
+Notification: 11
+[ABORT Notification Client (8450, 42680)
+Now: 1465544868940
+Delay: 12900
+Last Timestamp: 1465544868921
+Next Interval: 1465544881840
+Threshold: 342
+Deadline: 1465544911943]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544868941
+Delay: 12900
+Last Timestamp: 1465544856279
+Next Interval: 1465544881841
+Threshold: 132
+Deadline: 1465544893041]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544868941
+Delay: 12900
+Last Timestamp: 1465544856280
+Next Interval: 1465544881841
+Threshold: 27
+Deadline: 1465544882107]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544868942
+Delay: 12900
+Last Timestamp: 1465544868927
+Next Interval: 1465544881842
+Threshold: 65
+Deadline: 1465544908852]
+[ABORT Notification Client (12500, 24060)
+Now: 1465544868942
+Delay: 12900
+Last Timestamp: 1465544868935
+Next Interval: 1465544881842
+Threshold: 115
+Deadline: 1465544893110]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544868942
+Delay: 12900
+Last Timestamp: 1465544868937
+Next Interval: 1465544881842
+Threshold: 343
+Deadline: 1465544916650]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544868943
+Delay: 12900
+Last Timestamp: 1465544856283
+Next Interval: 1465544881843
+Threshold: 247
+Deadline: 1465544884520]
+Notification: 12
+[ABORT Notification Client (8450, 42680)
+Now: 1465544881838
+Delay: 12900
+Last Timestamp: 1465544868921
+Next Interval: 1465544894738
+Threshold: 342
+Deadline: 1465544911943]
+[Send Notification Client (23380, 36630)
+Now: 1465544881839
+Delay: 12900
+Last Timestamp: 1465544856279
+Next Interval: 1465544894739
+Threshold: 132
+Deadline: 1465544893041]
+[Send Notification Client (23020, 25800)
+Now: 1465544881840
+Delay: 12900
+Last Timestamp: 1465544856280
+Next Interval: 1465544894740
+Threshold: 27
+Deadline: 1465544882107]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544881842
+Delay: 12900
+Last Timestamp: 1465544868927
+Next Interval: 1465544894742
+Threshold: 65
+Deadline: 1465544908852]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544881842
+Delay: 12900
+Last Timestamp: 1465544868937
+Next Interval: 1465544894742
+Threshold: 343
+Deadline: 1465544916650]
+[Send Notification Client (3220, 27990)
+Now: 1465544881843
+Delay: 12900
+Last Timestamp: 1465544856283
+Next Interval: 1465544894743
+Threshold: 247
+Deadline: 1465544884520]
+Notification: 13
+[ABORT Notification Client (8450, 42680)
+Now: 1465544894740
+Delay: 12900
+Last Timestamp: 1465544868921
+Next Interval: 1465544907640
+Threshold: 342
+Deadline: 1465544911943]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544894740
+Delay: 12900
+Last Timestamp: 1465544881839
+Next Interval: 1465544907640
+Threshold: 132
+Deadline: 1465544918601]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544894741
+Delay: 12900
+Last Timestamp: 1465544881840
+Next Interval: 1465544907641
+Threshold: 27
+Deadline: 1465544907667]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544894741
+Delay: 12900
+Last Timestamp: 1465544868927
+Next Interval: 1465544907641
+Threshold: 65
+Deadline: 1465544908852]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544894742
+Delay: 12900
+Last Timestamp: 1465544868937
+Next Interval: 1465544907642
+Threshold: 343
+Deadline: 1465544916650]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544894742
+Delay: 12900
+Last Timestamp: 1465544881843
+Next Interval: 1465544907642
+Threshold: 247
+Deadline: 1465544910080]
+Notification: 14
+[Send Notification Client (8450, 42680)
+Now: 1465544907641
+Delay: 12900
+Last Timestamp: 1465544868921
+Next Interval: 1465544920541
+Threshold: 342
+Deadline: 1465544911943]
+[Send Notification Client (23380, 36630)
+Now: 1465544907642
+Delay: 12900
+Last Timestamp: 1465544881839
+Next Interval: 1465544920542
+Threshold: 132
+Deadline: 1465544918601]
+[Send Notification Client (23020, 25800)
+Now: 1465544907643
+Delay: 12900
+Last Timestamp: 1465544881840
+Next Interval: 1465544920543
+Threshold: 27
+Deadline: 1465544907667]
+[Send Notification Client (33280, 39860)
+Now: 1465544907644
+Delay: 12900
+Last Timestamp: 1465544868927
+Next Interval: 1465544920544
+Threshold: 65
+Deadline: 1465544908852]
+[Send Notification Client (12980, 47370)
+Now: 1465544907646
+Delay: 12900
+Last Timestamp: 1465544868937
+Next Interval: 1465544920546
+Threshold: 343
+Deadline: 1465544916650]
+[Send Notification Client (3220, 27990)
+Now: 1465544907648
+Delay: 12900
+Last Timestamp: 1465544881843
+Next Interval: 1465544920548
+Threshold: 247
+Deadline: 1465544910080]
+Notification: 15
+[ABORT Notification Client (8450, 42680)
+Now: 1465544920542
+Delay: 12900
+Last Timestamp: 1465544907641
+Next Interval: 1465544933442
+Threshold: 342
+Deadline: 1465544950663]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544920542
+Delay: 12900
+Last Timestamp: 1465544907642
+Next Interval: 1465544933442
+Threshold: 132
+Deadline: 1465544944404]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544920542
+Delay: 12900
+Last Timestamp: 1465544907643
+Next Interval: 1465544933442
+Threshold: 27
+Deadline: 1465544933470]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544920543
+Delay: 12900
+Last Timestamp: 1465544907644
+Next Interval: 1465544933443
+Threshold: 65
+Deadline: 1465544947569]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544920543
+Delay: 12900
+Last Timestamp: 1465544907646
+Next Interval: 1465544933443
+Threshold: 343
+Deadline: 1465544955359]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544920544
+Delay: 12900
+Last Timestamp: 1465544907648
+Next Interval: 1465544933444
+Threshold: 247
+Deadline: 1465544935885]
+Notification: 16
+[ABORT Notification Client (8450, 42680)
+Now: 1465544933443
+Delay: 12900
+Last Timestamp: 1465544907641
+Next Interval: 1465544946343
+Threshold: 342
+Deadline: 1465544950663]
+[Send Notification Client (23380, 36630)
+Now: 1465544933443
+Delay: 12900
+Last Timestamp: 1465544907642
+Next Interval: 1465544946343
+Threshold: 132
+Deadline: 1465544944404]
+[Send Notification Client (23020, 25800)
+Now: 1465544933445
+Delay: 12900
+Last Timestamp: 1465544907643
+Next Interval: 1465544946345
+Threshold: 27
+Deadline: 1465544933470]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544933446
+Delay: 12900
+Last Timestamp: 1465544907644
+Next Interval: 1465544946346
+Threshold: 65
+Deadline: 1465544947569]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544933446
+Delay: 12900
+Last Timestamp: 1465544907646
+Next Interval: 1465544946346
+Threshold: 343
+Deadline: 1465544955359]
+[Send Notification Client (3220, 27990)
+Now: 1465544933447
+Delay: 12900
+Last Timestamp: 1465544907648
+Next Interval: 1465544946347
+Threshold: 247
+Deadline: 1465544935885]
+Notification: 17
+[Send Notification Client (8450, 42680)
+Now: 1465544946344
+Delay: 12900
+Last Timestamp: 1465544907641
+Next Interval: 1465544959244
+Threshold: 342
+Deadline: 1465544950663]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544946345
+Delay: 12900
+Last Timestamp: 1465544933443
+Next Interval: 1465544959245
+Threshold: 132
+Deadline: 1465544970205]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544946345
+Delay: 12900
+Last Timestamp: 1465544933445
+Next Interval: 1465544959245
+Threshold: 27
+Deadline: 1465544959272]
+[Send Notification Client (33280, 39860)
+Now: 1465544946345
+Delay: 12900
+Last Timestamp: 1465544907644
+Next Interval: 1465544959245
+Threshold: 65
+Deadline: 1465544947569]
+[Send Notification Client (12980, 47370)
+Now: 1465544946346
+Delay: 12900
+Last Timestamp: 1465544907646
+Next Interval: 1465544959246
+Threshold: 343
+Deadline: 1465544955359]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544946347
+Delay: 12900
+Last Timestamp: 1465544933447
+Next Interval: 1465544959247
+Threshold: 247
+Deadline: 1465544961684]
+Notification: 18
+[ABORT Notification Client (8450, 42680)
+Now: 1465544959246
+Delay: 12900
+Last Timestamp: 1465544946344
+Next Interval: 1465544972146
+Threshold: 342
+Deadline: 1465544989366]
+[Send Notification Client (23380, 36630)
+Now: 1465544959246
+Delay: 12900
+Last Timestamp: 1465544933443
+Next Interval: 1465544972146
+Threshold: 132
+Deadline: 1465544970205]
+[Send Notification Client (23020, 25800)
+Now: 1465544959247
+Delay: 12900
+Last Timestamp: 1465544933445
+Next Interval: 1465544972147
+Threshold: 27
+Deadline: 1465544959272]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544959248
+Delay: 12900
+Last Timestamp: 1465544946345
+Next Interval: 1465544972148
+Threshold: 65
+Deadline: 1465544986270]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544959249
+Delay: 12900
+Last Timestamp: 1465544946346
+Next Interval: 1465544972149
+Threshold: 343
+Deadline: 1465544994059]
+[Send Notification Client (3220, 27990)
+Now: 1465544959249
+Delay: 12900
+Last Timestamp: 1465544933447
+Next Interval: 1465544972149
+Threshold: 247
+Deadline: 1465544961684]
+Notification: 19
+[ABORT Notification Client (8450, 42680)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544946344
+Next Interval: 1465544985047
+Threshold: 342
+Deadline: 1465544989366]
+[ABORT Notification Client (23380, 36630)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544959246
+Next Interval: 1465544985047
+Threshold: 132
+Deadline: 1465544996008]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544959247
+Next Interval: 1465544985047
+Threshold: 27
+Deadline: 1465544985074]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544946345
+Next Interval: 1465544985047
+Threshold: 65
+Deadline: 1465544986270]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544946346
+Next Interval: 1465544985047
+Threshold: 343
+Deadline: 1465544994059]
+[ABORT Notification Client (3220, 27990)
+Now: 1465544972147
+Delay: 12900
+Last Timestamp: 1465544959249
+Next Interval: 1465544985047
+Threshold: 247
+Deadline: 1465544987486]
+Notification: 20
+[Send Notification Client (8450, 42680)
+Now: 1465544985048
+Delay: 12900
+Last Timestamp: 1465544946344
+Next Interval: 1465544997948
+Threshold: 342
+Deadline: 1465544989366]
+[Send Notification Client (23380, 36630)
+Now: 1465544985049
+Delay: 12900
+Last Timestamp: 1465544959246
+Next Interval: 1465544997949
+Threshold: 132
+Deadline: 1465544996008]
+[Send Notification Client (23020, 25800)
+Now: 1465544985050
+Delay: 12900
+Last Timestamp: 1465544959247
+Next Interval: 1465544997950
+Threshold: 27
+Deadline: 1465544985074]
+[Send Notification Client (33280, 39860)
+Now: 1465544985050
+Delay: 12900
+Last Timestamp: 1465544946345
+Next Interval: 1465544997950
+Threshold: 65
+Deadline: 1465544986270]
+[Send Notification Client (12980, 47370)
+Now: 1465544985051
+Delay: 12900
+Last Timestamp: 1465544946346
+Next Interval: 1465544997951
+Threshold: 343
+Deadline: 1465544994059]
+[Send Notification Client (3220, 27990)
+Now: 1465544985051
+Delay: 12900
+Last Timestamp: 1465544959249
+Next Interval: 1465544997951
+Threshold: 247
+Deadline: 1465544987486]
+Notification: 21
+[ABORT Notification Client (8450, 42680)
+Now: 1465544997950
+Delay: 12900
+Last Timestamp: 1465544985048
+Next Interval: 1465545010850
+Threshold: 342
+Deadline: 1465545028070]
+[ABORT Notification Client (23020, 25800)
+Now: 1465544997950
+Delay: 12900
+Last Timestamp: 1465544985050
+Next Interval: 1465545010850
+Threshold: 27
+Deadline: 1465545010877]
+[ABORT Notification Client (33280, 39860)
+Now: 1465544997950
+Delay: 12900
+Last Timestamp: 1465544985050
+Next Interval: 1465545010850
+Threshold: 65
+Deadline: 1465545024975]
+[ABORT Notification Client (12980, 47370)
+Now: 1465544997951
+Delay: 12900
+Last Timestamp: 1465544985051
+Next Interval: 1465545010851
+Threshold: 343
+Deadline: 1465545032764]
+Notification: 22
+[ABORT Notification Client (8450, 42680)
+Now: 1465545010851
+Delay: 12900
+Last Timestamp: 1465544985048
+Next Interval: 1465545023751
+Threshold: 342
+Deadline: 1465545028070]
+[Send Notification Client (23020, 25800)
+Now: 1465545010852
+Delay: 12900
+Last Timestamp: 1465544985050
+Next Interval: 1465545023752
+Threshold: 27
+Deadline: 1465545010877]
+[ABORT Notification Client (33280, 39860)
+Now: 1465545010853
+Delay: 12900
+Last Timestamp: 1465544985050
+Next Interval: 1465545023753
+Threshold: 65
+Deadline: 1465545024975]
+[ABORT Notification Client (12980, 47370)
+Now: 1465545010853
+Delay: 12900
+Last Timestamp: 1465544985051
+Next Interval: 1465545023753
+Threshold: 343
+Deadline: 1465545032764]
+Notification: 23
+[Send Notification Client (8450, 42680)
+Now: 1465545023752
+Delay: 12900
+Last Timestamp: 1465544985048
+Next Interval: 1465545036652
+Threshold: 342
+Deadline: 1465545028070]
+[ABORT Notification Client (23020, 25800)
+Now: 1465545023753
+Delay: 12900
+Last Timestamp: 1465545010852
+Next Interval: 1465545036653
+Threshold: 27
+Deadline: 1465545036679]
+[Send Notification Client (33280, 39860)
+Now: 1465545023754
+Delay: 12900
+Last Timestamp: 1465544985050
+Next Interval: 1465545036654
+Threshold: 65
+Deadline: 1465545024975]
+[Send Notification Client (12980, 47370)
+Now: 1465545023755
+Delay: 12900
+Last Timestamp: 1465544985051
+Next Interval: 1465545036655
+Threshold: 343
+Deadline: 1465545032764]
+Notification: 24
+[ABORT Notification Client (8450, 42680)
+Now: 1465545036654
+Delay: 12900
+Last Timestamp: 1465545023752
+Next Interval: 1465545049554
+Threshold: 342
+Deadline: 1465545066774]
+[Send Notification Client (23020, 25800)
+Now: 1465545036654
+Delay: 12900
+Last Timestamp: 1465545010852
+Next Interval: 1465545049554
+Threshold: 27
+Deadline: 1465545036679]
+[ABORT Notification Client (33280, 39860)
+Now: 1465545036655
+Delay: 12900
+Last Timestamp: 1465545023754
+Next Interval: 1465545049555
+Threshold: 65
+Deadline: 1465545063679]
+[ABORT Notification Client (12980, 47370)
+Now: 1465545036655
+Delay: 12900
+Last Timestamp: 1465545023755
+Next Interval: 1465545049555
+Threshold: 343
+Deadline: 1465545071468]
+Notification: 25
+[ABORT Notification Client (8450, 42680)
+Now: 1465545049555
+Delay: 12900
+Last Timestamp: 1465545023752
+Next Interval: 1465545062455
+Threshold: 342
+Deadline: 1465545066774]
+[ABORT Notification Client (23020, 25800)
+Now: 1465545049556
+Delay: 12900
+Last Timestamp: 1465545036654
+Next Interval: 1465545062456
+Threshold: 27
+Deadline: 1465545062481]
+[ABORT Notification Client (33280, 39860)
+Now: 1465545049556
+Delay: 12900
+Last Timestamp: 1465545023754
+Next Interval: 1465545062456
+Threshold: 65
+Deadline: 1465545063679]
+[ABORT Notification Client (12980, 47370)
+Now: 1465545049556
+Delay: 12900
+Last Timestamp: 1465545023755
+Next Interval: 1465545062456
+Threshold: 343
+Deadline: 1465545071468]
+Notification: 26
+[Send Notification Client (8450, 42680)
+Now: 1465545062456
+Delay: 12900
+Last Timestamp: 1465545023752
+Next Interval: 1465545075356
+Threshold: 342
+Deadline: 1465545066774]
+[Send Notification Client (23020, 25800)
+Now: 1465545062457
+Delay: 12900
+Last Timestamp: 1465545036654
+Next Interval: 1465545075357
+Threshold: 27
+Deadline: 1465545062481]
+[Send Notification Client (33280, 39860)
+Now: 1465545062458
+Delay: 12900
+Last Timestamp: 1465545023754
+Next Interval: 1465545075358
+Threshold: 65
+Deadline: 1465545063679]
+[Send Notification Client (12980, 47370)
+Now: 1465545062459
+Delay: 12900
+Last Timestamp: 1465545023755
+Next Interval: 1465545075359
+Threshold: 343
+Deadline: 1465545071468]
+Notification: 27
+[ABORT Notification Client (8450, 42680)
+Now: 1465545075357
+Delay: 12900
+Last Timestamp: 1465545062456
+Next Interval: 1465545088257
+Threshold: 342
+Deadline: 1465545105478]
+[ABORT Notification Client (23020, 25800)
+Now: 1465545075358
+Delay: 12900
+Last Timestamp: 1465545062457
+Next Interval: 1465545088258
+Threshold: 27
+Deadline: 1465545088284]
+[ABORT Notification Client (33280, 39860)
+Now: 1465545075358
+Delay: 12900
+Last Timestamp: 1465545062458
+Next Interval: 1465545088258
+Threshold: 65
+Deadline: 1465545102383]
+[ABORT Notification Client (12980, 47370)
+Now: 1465545075358
+Delay: 12900
+Last Timestamp: 1465545062459
+Next Interval: 1465545088258
+Threshold: 343
+Deadline: 1465545110172]
+Notification: 28
+[Send Notification Client (8450, 42680)
+Now: 1465545079339
+Delay: 39860
+Last Timestamp: 1465545062456
+Next Interval: 1465545119199
+Threshold: 342
+Deadline: 1465545105478]
+[Send Notification Client (33280, 39860)
+Now: 1465545079340
+Delay: 39860
+Last Timestamp: 1465545062458
+Next Interval: 1465545119200
+Threshold: 65
+Deadline: 1465545102383]
+[Send Notification Client (12980, 47370)
+Now: 1465545079341
+Delay: 39860
+Last Timestamp: 1465545062459
+Next Interval: 1465545119201
+Threshold: 343
+Deadline: 1465545110172]
